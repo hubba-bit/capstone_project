@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "734028318807",
+    "firebase_url": "https://bechdo-bcc69.firebaseio.com",
+    "project_id": "bechdo-bcc69",
+    "storage_bucket": "bechdo-bcc69.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:734028318807:android:e7e63664f3ebdefe84bb12",
+        "android_client_info": {
+          "package_name": "com.example.bechdoapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "734028318807-m26ohg7gqu2v1tmb3fijkgchvijhfm7d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.bechdoapp",
+            "certificate_hash": "232e5ee7f66f6f395d174581e0e187f069248835"
+          }
+        },
+        {
+          "client_id": "734028318807-vm7j2r6cb7sgsps1ms8kcmk7hu5ahlo4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCIGbyihWfTsgdtNu2BbCX0lULbCBDIG8U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "734028318807-vm7j2r6cb7sgsps1ms8kcmk7hu5ahlo4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
