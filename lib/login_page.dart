@@ -1,14 +1,30 @@
+import 'package:bechdoapp/Auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'customRaisedBtn.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 
 class LoginPage extends StatelessWidget {
+  LoginPage({@required this.auth,});
+final AuthBase auth;
+
+
+
   Future<void> _signInAnonymously() async {
     try {
-      final authResult = await FirebaseAuth.instance.signInAnonymously();
+      await auth.signInAnonymously();
+    }
+    catch (e) {
+      print(e.toString());
+    }
+  }
+
+  Future<void> _signInWithGoogle() async {
+    try {
+      await auth.signInWithGoogle();
     }
     catch (e) {
       print(e.toString());
@@ -94,7 +110,7 @@ SizedBox(height: 45.0,),
               ],
             ),
             color: Colors.blueAccent[700],
-            onPressed: () {},
+            onPressed:  _signInWithGoogle,
             borderRadius: 5.0,
           ),
           SizedBox(

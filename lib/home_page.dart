@@ -1,9 +1,20 @@
-import 'dart:html';
-
-import 'package:flutter/cupertino.dart';
+import 'package:bechdoapp/Auth.dart';
 import 'package:flutter/material.dart';
 
+
 class HomePage extends StatefulWidget {
+  HomePage({@required this.auth});
+  final AuthBase auth;
+  Future<void> _signOut() async{
+    try{
+      auth.signOut();
+
+    }
+     catch(e){
+       print(e.toString());
+
+     }
+  }
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -42,6 +53,19 @@ class _HomePageState extends State<HomePage> {
        },
        icon: cusIcon,
      ),
+    /* FlatButton*//*(
+
+       child: Text(
+         'Logout',
+         style: TextStyle(
+           fontSize: 16.0,
+           color: Colors.white,
+         ),
+       ),
+       onPressed: _signOut,
+
+     )
+*/
    ],
         elevation: 10.0,
         title:
