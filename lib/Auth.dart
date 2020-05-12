@@ -40,7 +40,7 @@ class Auth implements AuthBase {
     return User(uid: user.uid);
   }
 
-
+@override
   Future<User> CurrentUser() async {
     final returnedUser = await _fireBaseAuth.currentUser();
     return _userFromFireBase(returnedUser);

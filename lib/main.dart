@@ -1,7 +1,6 @@
 import 'package:bechdoapp/Auth.dart';
 import 'package:flutter/material.dart';
 import 'landingPage.dart';
-import 'package:bechdoapp/Auth.dart';
 
 void main(){
   runApp(MyApp());
