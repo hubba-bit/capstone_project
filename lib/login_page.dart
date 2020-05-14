@@ -4,18 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'customRaisedBtn.dart';
 
-
 class LoginPage extends StatelessWidget {
   LoginPage({@required this.auth});
-final AuthBase auth;
-
-
+  final AuthBase auth;
 
   Future<void> _signInAnonymously() async {
     try {
       await auth.signInAnonymously();
-    }
-    catch (e) {
+    } catch (e) {
       print(e.toString());
     }
   }
@@ -23,48 +19,40 @@ final AuthBase auth;
   Future<void> _signInWithGoogle() async {
     try {
       await auth.signInWithGoogle();
-    }
-    catch (e) {
+    } catch (e) {
       print(e.toString());
     }
   }
 
-    @override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
+        elevation: 10.0,
+        /* leading: IconButton(
           onPressed: (){},
-          icon: Icon(Icons.menu),
-        ),        elevation: 10.0,
+          icon: Icon(Icons.menu),*/
+        title: Text(''),
       ),
-
-      body: _bodyContent(
-
-      ),
+      body: _bodyContent(),
       backgroundColor: Colors.blueAccent[50],
-
     );
-
   }
 
-
-  Widget _bodyContent(
-      ) {
+  Widget _bodyContent() {
     return Container(
       padding: EdgeInsets.all(10.0),
-
       child: Column(
-
-
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
-
         children: <Widget>[
-
-      Image.asset('images/olx.jpg',  height: 105.0,
+          Image.asset(
+            'images/olx.jpg',
+            height: 105.0,
           ),
-SizedBox(height: 45.0,),
+          SizedBox(
+            height: 45.0,
+          ),
 
 //          Text(
 //            'olx',
@@ -97,8 +85,8 @@ SizedBox(height: 45.0,),
                 Text(
                   'Continue With Google',
                   style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 15.0,
+                    color: Colors.black,
+                    fontSize: 16.5,
                   ),
                 ),
                 Opacity(
@@ -107,8 +95,8 @@ SizedBox(height: 45.0,),
                 ),
               ],
             ),
-            color: Colors.blueAccent[700],
-            onPressed:  _signInWithGoogle,
+            color: Colors.white,
+            onPressed: _signInWithGoogle,
             borderRadius: 5.0,
           ),
           SizedBox(
@@ -126,7 +114,7 @@ SizedBox(height: 45.0,),
                   'Continue With Facebook',
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 15.0,
+                    fontSize: 16.5,
                   ),
                 ),
                 Opacity(
@@ -144,7 +132,7 @@ SizedBox(height: 45.0,),
           SizedBox(
             height: 10.0,
           ),
-          customRaisedBtn(
+          /*   customRaisedBtn(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
@@ -155,10 +143,10 @@ SizedBox(height: 45.0,),
                     fontSize: 15.0,
                   ),
                 ),
-               /* Opacity(
+               */ /* Opacity(
                   opacity: 0.0,
                   child: Image.asset('images/create-a-logo-png.png'),
-                ),*/
+                ),*/ /*
               ],
             ),
             color: Colors.blueAccent[700],
@@ -167,28 +155,31 @@ SizedBox(height: 45.0,),
           ),
           SizedBox(
             height: 10.0,
-          ),
+          ),*/
           Text(
             'OR',
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 18.0,
-              color: Colors.blueAccent[700],
+              color: Colors.black,
               fontWeight: FontWeight.bold,
             ),
           ),
           SizedBox(height: 8.0),
           customRaisedBtn(
             child: Row(
-crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                Image.asset('images/create-a-logo-png.png',
+                /* Opacity(child: Image.asset('images/create-a-logo-png.png',
+
                 ),
+                opacity: 0.0,),
+*/
                 Text(
-                  'Create your Account',
+                  'Continue Without SignIn ',
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 15.0,
+                    fontSize: 16.5,
                   ),
 //                SizedBox(
 //                  height: 0.1,
@@ -200,14 +191,14 @@ crossAxisAlignment: CrossAxisAlignment.center,
                 ),*/
               ],
             ),
-            color: Colors.blueAccent[700],
+            color: Colors.grey[500],
             onPressed: _signInAnonymously,
             borderRadius: 6.0,
           ),
           SizedBox(
-            height: 55.0,
+            height: 35.0,
           ),
-          Text(
+          /*  Text(
             'If you continue , you are accepting',
             textAlign: TextAlign.center,
             style: TextStyle(
@@ -226,10 +217,9 @@ crossAxisAlignment: CrossAxisAlignment.center,
               fontFamily: ('Raleway'),
               decoration: TextDecoration.underline,
             ),
-          ),
+          ),*/
         ],
       ),
     );
   }
-
 }
