@@ -1,3 +1,4 @@
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -54,44 +55,57 @@ class HomePage extends StatelessWidget {
 
   Widget _homePageContent() {
     return Container(
-
-
-
-
       padding: EdgeInsets.all(25.0),
       child: Column(
-
-
         children: <Widget>[
-         SizedBox(
+          SizedBox(
             height: 14.0,
           ),
-
           Row(children: <Widget>[
             SizedBox(
               width: 150.0,
               height: 150.0,
-
               child: customRaisedBtn(
-
-
                 child: Row(
-mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-         MaterialButton(
-                                           onPressed: () {},
+
+
+/*ClipOval(
+  child: Material(
+    color:Colors.orange,
+    child: InkWell(
+      splashColor: Colors.green,
+      onTap:(){},
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+
+       children: <Widget>[
+         Icon(Icons.call),
+         Text("Call"),
+       ],
+      ),
+    ),
+  ),
+),*/
+
+                  /*  MaterialButton(
+                      onPressed:(){
+                      },
                       color: Colors.blue,
                       textColor: Colors.white,
                       child: Icon(
                         Icons.directions_car,
                         size: 24,
-                      ),
 
+                      ),
+                      elevation: 13.0,
                       padding: EdgeInsets.all(16),
                       shape: CircleBorder(),
 
-                    ),
-                   /*  Center(
+                    ),*/
+
+                    /*  Center(
                       child: Text(
                         "Hello World",
 
@@ -116,7 +130,6 @@ Stack(children: <Widget>[
 */
                   ],
                 ),
-
                 color: Colors.white,
                 onPressed: () {},
                 borderRadius: 20.0,
@@ -130,24 +143,20 @@ Stack(children: <Widget>[
               height: 150.0,
               child: customRaisedBtn(
                 child: Row(
-
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     MaterialButton(
                       onPressed: () {},
                       color: Colors.blue,
                       textColor: Colors.white,
-
                       child: Icon(
                         Icons.home,
-
                         size: 24,
                       ),
-
+                      elevation: 13.0,
                       padding: EdgeInsets.all(16),
                       shape: CircleBorder(),
                     ),
-
                     Text(
                       '',
                       style: TextStyle(
@@ -172,7 +181,6 @@ Stack(children: <Widget>[
           ),
           Row(
             children: <Widget>[
-
               SizedBox(
                 width: 150.0,
                 height: 150.0,
@@ -184,15 +192,13 @@ Stack(children: <Widget>[
                         onPressed: () {},
                         color: Colors.blue,
                         textColor: Colors.white,
-
                         child: Icon(
                           Icons.pets,
-
                           size: 24,
                         ),
-
                         padding: EdgeInsets.all(16),
                         shape: CircleBorder(),
+                        elevation: 13.0,
                       ),
                       Text(
                         '',
@@ -221,21 +227,18 @@ Stack(children: <Widget>[
                 child: customRaisedBtn(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-
                     children: <Widget>[
                       MaterialButton(
                         onPressed: () {},
                         color: Colors.blue,
                         textColor: Colors.white,
-
                         child: Icon(
                           Icons.smartphone,
-
                           size: 24,
                         ),
-
                         padding: EdgeInsets.all(16),
                         shape: CircleBorder(),
+                        elevation: 13.0,
                       ),
                       Text(
                         '',
@@ -268,21 +271,18 @@ Stack(children: <Widget>[
                 child: customRaisedBtn(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-
                     children: <Widget>[
                       MaterialButton(
                         onPressed: () {},
                         color: Colors.blue,
                         textColor: Colors.white,
-
                         child: Icon(
                           Icons.business_center,
-
                           size: 24,
                         ),
-
                         padding: EdgeInsets.all(16),
                         shape: CircleBorder(),
+                        elevation: 13.0,
                       ),
                       Text(
                         '',
@@ -291,7 +291,7 @@ Stack(children: <Widget>[
                           fontSize: 16.5,
                         ),
                       ),
-                     /* Opacity(
+                      /* Opacity(
                         opacity: 0.0,
                         child: Image.asset('images/google-logo.png'),
                       ),*/
@@ -311,19 +311,16 @@ Stack(children: <Widget>[
                 child: customRaisedBtn(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-
                     children: <Widget>[
                       MaterialButton(
                         onPressed: () {},
                         color: Colors.blue,
                         textColor: Colors.white,
-
                         child: Icon(
                           Icons.hotel,
-
                           size: 24,
                         ),
-
+                        elevation: 13.0,
                         padding: EdgeInsets.all(16),
                         shape: CircleBorder(),
                       ),
@@ -350,5 +347,8 @@ Stack(children: <Widget>[
         ],
       ),
     );
+
   }
+
 }
+
