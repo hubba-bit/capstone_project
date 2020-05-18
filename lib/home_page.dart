@@ -1,6 +1,5 @@
-
-
 import 'package:bechdoapp/login_page.dart';
+import 'package:bechdoapp/menuButton.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -9,7 +8,10 @@ import 'customRaisedBtn.dart';
 
 class HomePage extends StatelessWidget {
   final context;
-  HomePage({@required this.auth, this.context,});
+  HomePage({
+    @required this.auth,
+    this.context,
+  });
   final AuthBase auth;
   Future<void> _signOut() async {
     try {
@@ -89,10 +91,7 @@ class HomePage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       FlatButton(
-                        onPressed:(){
-
-                        },
-
+                        onPressed: () {},
                         color: Colors.blue,
                         padding: EdgeInsets.all(10.0),
                         shape: CircleBorder(),
@@ -123,7 +122,6 @@ class HomePage extends StatelessWidget {
                 color: Colors.white,
                 onPressed: () {
                   navigateToSubPage(context);
-
                 },
                 borderRadius: 20.0,
               ),
@@ -131,7 +129,6 @@ class HomePage extends StatelessWidget {
                 width: 12.0,
               ),
               customRaisedBtn(
-               
                 child: Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -262,43 +259,10 @@ class HomePage extends StatelessWidget {
           ),
           Row(
             children: <Widget>[
-              customRaisedBtn(
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      FlatButton(
-                        onPressed: () => {},
-                        color: Colors.blue,
-                        padding: EdgeInsets.all(10.0),
-                        shape: CircleBorder(),
-                        child: Column(
-                          // Rep
-                          // lace with a Row for horizontal icon + text
-                          children: <Widget>[
-                            Icon(
-                              Icons.business_center,
-                              size: 33.0,
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10.0,
-                      ),
-                      Text(
-                        'Jobs',
-                        style: TextStyle(
-                          fontStyle: FontStyle.normal,
-                          fontSize: 20.0,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                color: Colors.white,
-                onPressed: () {},
-                borderRadius: 20.0,
+              MenuButton(
+                text: "Jobs",
+                icon: Icons.business_center,
+
               ),
               SizedBox(
                 width: 12.0,
@@ -348,6 +312,7 @@ class HomePage extends StatelessWidget {
     );
   }
 }
+
 Future navigateToSubPage(context) async {
   Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
 }

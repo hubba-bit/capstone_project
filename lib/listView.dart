@@ -1,37 +1,53 @@
-/*
 import 'package:flutter/material.dart';
 
-class ListView extends StatefulWidget {
-  @override
-  ListViewState createState() => ListViewState();
-}
-
-class myListViewState extends State<myListView> {
+class AdsListingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ListView(
-        children: <Widget>[
-        ListTile(
+    return Scaffold(
+        body: ListView(
+      children: getMenuTiles(),
+    ));
+  }
+
+  List<Widget> getMenuTiles() {
+    List<MenuTileDetail> tileDetails = <MenuTileDetail>[
+      MenuTileDetail(
+          title: "Software developer C#",
+          subtitle: "Need experienced developer",
+          url:
+              "https://pluralsight.imgix.net/paths/path-icons/csharp-e7b8fcd4ce.png?w=70"),
+      MenuTileDetail(
+          title: "Fluttter developer",
+          subtitle: "Need experienced flutter developer",
+          url:
+              "https://hackr.io/tutorials/flutter/logo-flutter.svg?ver=1579862938"),
+      MenuTileDetail(
+          title: "Node developer",
+          subtitle: "Need node developer internee",
+          url:
+              "https://hackr.io/tutorials/flutter/logo-flutter.svg?ver=1579862938"),
+    ];
+
+    List<ListTile> tiles = <ListTile>[];
+
+    for (var item in tileDetails) {
+      tiles.add(ListTile(
         leading: CircleAvatar(
-        backgroundImage: AssetImage('assets/sun.jpg'),
-    ),
-    title: Text('Sun'),
-          subtitle: Text('millions miles away'),
-    ),
-    ListTile(
-    leading: CircleAvatar(
-    backgroundImage: AssetImage('assets/moon.jpg'),
-    ),
-    title: Text('Moon'),
-    ),
-    ListTile(
-    leading: CircleAvatar(
-    backgroundImage: AssetImage('assets/planet.jpg'),
-    ),
-    title: Text('Star'),
-    ),
-    ],
-    );
+          backgroundImage: AssetImage(item.url),
+        ),
+        title: Text(item.title),
+        subtitle: Text(item.subtitle),
+      ));
+    }
+
+    return tiles;
   }
 }
-*/
+
+class MenuTileDetail {
+  final String title;
+  final String subtitle;
+  final String url;
+
+  MenuTileDetail({this.title, this.subtitle, this.url});
+}
