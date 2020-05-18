@@ -1,4 +1,6 @@
 
+
+import 'package:bechdoapp/login_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -6,7 +8,8 @@ import 'Auth.dart';
 import 'customRaisedBtn.dart';
 
 class HomePage extends StatelessWidget {
-  HomePage({@required this.auth});
+  final context;
+  HomePage({@required this.auth, this.context,});
   final AuthBase auth;
   Future<void> _signOut() async {
     try {
@@ -55,300 +58,296 @@ class HomePage extends StatelessWidget {
 
   Widget _homePageContent() {
     return Container(
+      /*decoration: BoxDecoration(
+        color: Colors.grey,
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(10),
+            topRight: Radius.circular(10),
+            bottomLeft: Radius.circular(10),
+            bottomRight: Radius.circular(10)
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.5),
+            spreadRadius: 5,
+            blurRadius: 7,
+            offset: Offset(0, 3), // changes position of shadow
+          ),
+        ],
+      ),*/
       padding: EdgeInsets.all(25.0),
       child: Column(
         children: <Widget>[
           SizedBox(
-            height: 14.0,
-          ),
-          Row(children: <Widget>[
-            SizedBox(
-              width: 150.0,
-              height: 150.0,
-              child: customRaisedBtn(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-
-
-/*ClipOval(
-  child: Material(
-    color:Colors.orange,
-    child: InkWell(
-      splashColor: Colors.green,
-      onTap:(){},
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-
-       children: <Widget>[
-         Icon(Icons.call),
-         Text("Call"),
-       ],
-      ),
-    ),
-  ),
-),*/
-
-                  /*  MaterialButton(
-                      onPressed:(){
-                      },
-                      color: Colors.blue,
-                      textColor: Colors.white,
-                      child: Icon(
-                        Icons.directions_car,
-                        size: 24,
-
-                      ),
-                      elevation: 13.0,
-                      padding: EdgeInsets.all(16),
-                      shape: CircleBorder(),
-
-                    ),*/
-
-                    /*  Center(
-                      child: Text(
-                        "Hello World",
-
-                      ),
-                    ),*/
-
-/*Opacity(
-                      opacity: 0.0,
-                      child: Image.asset('images/google-logo.png'),
-                    ),*/
-/*
-SizedBox(
-  width: 6.0,
-  height:1.0,
-),
-Stack(children: <Widget>[
-  Align(
-    alignment: Alignment(-0.90,0.5),
-    child: Text('Vehicles'),
-  ),
-],)
-*/
-                  ],
-                ),
-                color: Colors.white,
-                onPressed: () {},
-                borderRadius: 20.0,
-              ),
-            ),
-            SizedBox(
-              width: 10.0,
-            ),
-            SizedBox(
-              width: 150.0,
-              height: 150.0,
-              child: customRaisedBtn(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    MaterialButton(
-                      onPressed: () {},
-                      color: Colors.blue,
-                      textColor: Colors.white,
-                      child: Icon(
-                        Icons.home,
-                        size: 24,
-                      ),
-                      elevation: 13.0,
-                      padding: EdgeInsets.all(16),
-                      shape: CircleBorder(),
-                    ),
-                    Text(
-                      '',
-                      style: TextStyle(
-                        //                    color: Colors.black,
-                        fontSize: 16.5,
-                      ),
-                    ),
-                    /* Opacity(
-                      opacity: 0.0,
-                      child: Image.asset('images/google-logo.png'),
-                    ),*/
-                  ],
-                ),
-                color: Colors.white,
-                onPressed: () {},
-                borderRadius: 20.0,
-              ),
-            ),
-          ]),
-          SizedBox(
-            height: 15.0,
+            height: 9.0,
           ),
           Row(
             children: <Widget>[
-              SizedBox(
-                width: 150.0,
-                height: 150.0,
-                child: customRaisedBtn(
-                  child: Row(
+              customRaisedBtn(
+                child: Center(
+                  child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      MaterialButton(
-                        onPressed: () {},
+                      FlatButton(
+                        onPressed:(){
+
+                        },
+
                         color: Colors.blue,
-                        textColor: Colors.white,
-                        child: Icon(
-                          Icons.pets,
-                          size: 24,
-                        ),
-                        padding: EdgeInsets.all(16),
+                        padding: EdgeInsets.all(10.0),
                         shape: CircleBorder(),
-                        elevation: 13.0,
+                        child: Column(
+                          // Rep
+                          // lace with a Row for horizontal icon + text
+                          children: <Widget>[
+                            Icon(
+                              Icons.directions_car,
+                              size: 33.0,
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10.0,
                       ),
                       Text(
-                        '',
+                        'Vehicles',
                         style: TextStyle(
-                          //                    color: Colors.black,
-                          fontSize: 16.5,
+                          fontStyle: FontStyle.normal,
+                          fontSize: 20.0,
                         ),
                       ),
-                      /*Opacity(
-                        opacity: 0.0,
-                        child: Image.asset('images/google-logo.png'),
-                      ),*/
                     ],
                   ),
-                  color: Colors.white,
-                  onPressed: () {},
-                  borderRadius: 20.0,
                 ),
+                color: Colors.white,
+                onPressed: () {
+                  navigateToSubPage(context);
+
+                },
+                borderRadius: 20.0,
               ),
               SizedBox(
-                width: 10.0,
+                width: 12.0,
               ),
-              SizedBox(
-                width: 150.0,
-                height: 150.0,
-                child: customRaisedBtn(
-                  child: Row(
+              customRaisedBtn(
+               
+                child: Center(
+                  child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      MaterialButton(
-                        onPressed: () {},
+                      FlatButton(
+                        onPressed: () => {},
                         color: Colors.blue,
-                        textColor: Colors.white,
-                        child: Icon(
-                          Icons.smartphone,
-                          size: 24,
-                        ),
-                        padding: EdgeInsets.all(16),
+                        padding: EdgeInsets.all(10.0),
                         shape: CircleBorder(),
-                        elevation: 13.0,
+                        child: Column(
+                          // Rep
+                          // lace with a Row for horizontal icon + text
+                          children: <Widget>[
+                            Icon(
+                              Icons.smartphone,
+                              size: 33.0,
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10.0,
                       ),
                       Text(
-                        '',
+                        'Mobiles',
                         style: TextStyle(
-                          //                    color: Colors.black,
-                          fontSize: 16.5,
+                          fontStyle: FontStyle.normal,
+                          fontSize: 20.0,
                         ),
                       ),
-                      /*  Opacity(
-                opacity: 0.0,
-                child: Image.asset('images/google-logo.png'),
-              ),*/
                     ],
                   ),
-                  color: Colors.white,
-                  onPressed: () {},
-                  borderRadius: 20.0,
                 ),
+                color: Colors.white,
+                onPressed: () {},
+                borderRadius: 20.0,
               ),
             ],
           ),
           SizedBox(
-            height: 15.0,
+            height: 18.0,
           ),
           Row(
             children: <Widget>[
-              SizedBox(
-                width: 150.0,
-                height: 150.0,
-                child: customRaisedBtn(
-                  child: Row(
+              customRaisedBtn(
+                child: Center(
+                  child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      MaterialButton(
-                        onPressed: () {},
+                      FlatButton(
+                        onPressed: () => {},
                         color: Colors.blue,
-                        textColor: Colors.white,
-                        child: Icon(
-                          Icons.business_center,
-                          size: 24,
-                        ),
-                        padding: EdgeInsets.all(16),
+                        padding: EdgeInsets.all(10.0),
                         shape: CircleBorder(),
-                        elevation: 13.0,
+                        child: Column(
+                          // Rep
+                          // lace with a Row for horizontal icon + text
+                          children: <Widget>[
+                            Icon(
+                              Icons.pets,
+                              size: 33.0,
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10.0,
                       ),
                       Text(
-                        '',
+                        'Animals',
                         style: TextStyle(
-                          //                    color: Colors.black,
-                          fontSize: 16.5,
+                          fontStyle: FontStyle.normal,
+                          fontSize: 20.0,
                         ),
                       ),
-                      /* Opacity(
-                        opacity: 0.0,
-                        child: Image.asset('images/google-logo.png'),
-                      ),*/
                     ],
                   ),
-                  color: Colors.white,
-                  onPressed: () {},
-                  borderRadius: 20.0,
                 ),
+                color: Colors.white,
+                onPressed: () {},
+                borderRadius: 20.0,
               ),
               SizedBox(
-                width: 10.0,
+                width: 12.0,
               ),
-              SizedBox(
-                width: 150.0,
-                height: 150.0,
-                child: customRaisedBtn(
-                  child: Row(
+              customRaisedBtn(
+                child: Center(
+                  child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      MaterialButton(
-                        onPressed: () {},
+                      FlatButton(
+                        onPressed: () => {},
                         color: Colors.blue,
-                        textColor: Colors.white,
-                        child: Icon(
-                          Icons.hotel,
-                          size: 24,
-                        ),
-                        elevation: 13.0,
-                        padding: EdgeInsets.all(16),
+                        padding: EdgeInsets.all(10.0),
                         shape: CircleBorder(),
+                        child: Column(
+                          // Rep
+                          // lace with a Row for horizontal icon + text
+                          children: <Widget>[
+                            Icon(
+                              Icons.home,
+                              size: 33.0,
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10.0,
                       ),
                       Text(
-                        '',
+                        'Property',
                         style: TextStyle(
-                          //                    color: Colors.black,
-                          fontSize: 16.5,
+                          fontStyle: FontStyle.normal,
+                          fontSize: 20.0,
                         ),
                       ),
-                      /*  Opacity(
-                opacity: 0.0,
-                child: Image.asset('images/google-logo.png'),
-              ),*/
                     ],
                   ),
-                  color: Colors.white,
-                  onPressed: () {},
-                  borderRadius: 20.0,
                 ),
+                color: Colors.white,
+                onPressed: () {},
+                borderRadius: 20.0,
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 18.0,
+          ),
+          Row(
+            children: <Widget>[
+              customRaisedBtn(
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      FlatButton(
+                        onPressed: () => {},
+                        color: Colors.blue,
+                        padding: EdgeInsets.all(10.0),
+                        shape: CircleBorder(),
+                        child: Column(
+                          // Rep
+                          // lace with a Row for horizontal icon + text
+                          children: <Widget>[
+                            Icon(
+                              Icons.business_center,
+                              size: 33.0,
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10.0,
+                      ),
+                      Text(
+                        'Jobs',
+                        style: TextStyle(
+                          fontStyle: FontStyle.normal,
+                          fontSize: 20.0,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                color: Colors.white,
+                onPressed: () {},
+                borderRadius: 20.0,
+              ),
+              SizedBox(
+                width: 12.0,
+              ),
+              customRaisedBtn(
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      FlatButton(
+                        onPressed: () => {},
+                        color: Colors.blue,
+                        padding: EdgeInsets.all(10.0),
+                        shape: CircleBorder(),
+                        child: Column(
+                          // Rep
+                          // lace with a Row for horizontal icon + text
+                          children: <Widget>[
+                            Icon(
+                              Icons.laptop_chromebook,
+                              size: 33.0,
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10.0,
+                      ),
+                      Text(
+                        'Electronics',
+                        style: TextStyle(
+                          fontStyle: FontStyle.normal,
+                          fontSize: 20.0,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                color: Colors.white,
+                onPressed: () {},
+                borderRadius: 20.0,
               ),
             ],
           ),
         ],
       ),
     );
-
   }
-
 }
-
+Future navigateToSubPage(context) async {
+  Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
+}

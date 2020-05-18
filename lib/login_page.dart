@@ -198,26 +198,7 @@ class LoginPage extends StatelessWidget {
           SizedBox(
             height: 35.0,
           ),
-          /*  Text(
-            'If you continue , you are accepting',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 12.0,
-              color: Colors.black,
-              fontFamily: ('Raleway'),
 
-            ),
-          ),
-          Text(
-            'OLX Terms and Condition and Privacy Policy',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 12.0,
-              color: Colors.black,
-              fontFamily: ('Raleway'),
-              decoration: TextDecoration.underline,
-            ),
-          ),*/
         ],
       ),
     );

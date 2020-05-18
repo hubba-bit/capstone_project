@@ -1,11 +1,12 @@
+/*
 import 'package:flutter/material.dart';
 
-class _myListView extends StatefulWidget {
+class ListView extends StatefulWidget {
   @override
-  __myListViewState createState() => __myListViewState();
+  ListViewState createState() => ListViewState();
 }
 
-class __myListViewState extends State<_myListView> {
+class myListViewState extends State<myListView> {
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -33,3 +34,4 @@ class __myListViewState extends State<_myListView> {
     );
   }
 }
+*/

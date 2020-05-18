@@ -10,7 +10,8 @@ class customRaisedBtn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 50.0,
+      height: 160.0,
+      width: 160.0,
       child:  RaisedButton(
           child: child,
           onPressed: onPressed,
