@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'Auth.dart';
-import 'customRaisedBtn.dart';
 
 class HomePage extends StatelessWidget {
   final context;
@@ -85,86 +84,16 @@ class HomePage extends StatelessWidget {
           ),
           Row(
             children: <Widget>[
-              customRaisedBtn(
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      FlatButton(
-                        onPressed: () {},
-                        color: Colors.blue,
-                        padding: EdgeInsets.all(10.0),
-                        shape: CircleBorder(),
-                        child: Column(
-                          // Rep
-                          // lace with a Row for horizontal icon + text
-                          children: <Widget>[
-                            Icon(
-                              Icons.directions_car,
-                              size: 33.0,
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10.0,
-                      ),
-                      Text(
-                        'Vehicles',
-                        style: TextStyle(
-                          fontStyle: FontStyle.normal,
-                          fontSize: 20.0,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                color: Colors.white,
-                onPressed: () {
-                  navigateToSubPage(context);
-                },
-                borderRadius: 20.0,
+              MenuButton(
+                text: "Vehicles",
+                icon: Icons.directions_car,
               ),
               SizedBox(
                 width: 12.0,
               ),
-              customRaisedBtn(
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      FlatButton(
-                        onPressed: () => {},
-                        color: Colors.blue,
-                        padding: EdgeInsets.all(10.0),
-                        shape: CircleBorder(),
-                        child: Column(
-                          // Rep
-                          // lace with a Row for horizontal icon + text
-                          children: <Widget>[
-                            Icon(
-                              Icons.smartphone,
-                              size: 33.0,
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10.0,
-                      ),
-                      Text(
-                        'Mobiles',
-                        style: TextStyle(
-                          fontStyle: FontStyle.normal,
-                          fontSize: 20.0,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                color: Colors.white,
-                onPressed: () {},
-                borderRadius: 20.0,
+              MenuButton(
+                text: "Mobiles",
+                icon: Icons.smartphone,
               ),
             ],
           ),
@@ -173,84 +102,16 @@ class HomePage extends StatelessWidget {
           ),
           Row(
             children: <Widget>[
-              customRaisedBtn(
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      FlatButton(
-                        onPressed: () => {},
-                        color: Colors.blue,
-                        padding: EdgeInsets.all(10.0),
-                        shape: CircleBorder(),
-                        child: Column(
-                          // Rep
-                          // lace with a Row for horizontal icon + text
-                          children: <Widget>[
-                            Icon(
-                              Icons.pets,
-                              size: 33.0,
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10.0,
-                      ),
-                      Text(
-                        'Animals',
-                        style: TextStyle(
-                          fontStyle: FontStyle.normal,
-                          fontSize: 20.0,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                color: Colors.white,
-                onPressed: () {},
-                borderRadius: 20.0,
+              MenuButton(
+                text: "Animals",
+                icon: Icons.pets,
               ),
               SizedBox(
                 width: 12.0,
               ),
-              customRaisedBtn(
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      FlatButton(
-                        onPressed: () => {},
-                        color: Colors.blue,
-                        padding: EdgeInsets.all(10.0),
-                        shape: CircleBorder(),
-                        child: Column(
-                          // Rep
-                          // lace with a Row for horizontal icon + text
-                          children: <Widget>[
-                            Icon(
-                              Icons.home,
-                              size: 33.0,
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10.0,
-                      ),
-                      Text(
-                        'Property',
-                        style: TextStyle(
-                          fontStyle: FontStyle.normal,
-                          fontSize: 20.0,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                color: Colors.white,
-                onPressed: () {},
-                borderRadius: 20.0,
+              MenuButton(
+                text: "Property",
+                icon: Icons.home,
               ),
             ],
           ),
@@ -262,48 +123,13 @@ class HomePage extends StatelessWidget {
               MenuButton(
                 text: "Jobs",
                 icon: Icons.business_center,
-
               ),
               SizedBox(
                 width: 12.0,
               ),
-              customRaisedBtn(
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      FlatButton(
-                        onPressed: () => {},
-                        color: Colors.blue,
-                        padding: EdgeInsets.all(10.0),
-                        shape: CircleBorder(),
-                        child: Column(
-                          // Rep
-                          // lace with a Row for horizontal icon + text
-                          children: <Widget>[
-                            Icon(
-                              Icons.laptop_chromebook,
-                              size: 33.0,
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10.0,
-                      ),
-                      Text(
-                        'Electronics',
-                        style: TextStyle(
-                          fontStyle: FontStyle.normal,
-                          fontSize: 20.0,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                color: Colors.white,
-                onPressed: () {},
-                borderRadius: 20.0,
+              MenuButton(
+                text: "Electronics",
+                icon: Icons.laptop_chromebook,
               ),
             ],
           ),

@@ -1,5 +1,6 @@
 import 'package:bechdoapp/Auth.dart';
 import 'package:bechdoapp/home_page.dart';
+import 'package:bechdoapp/login_page.dart';
 import 'package:flutter/material.dart';
 import 'landingPage.dart';
 

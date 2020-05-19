@@ -54,26 +54,7 @@ class LoginPage extends StatelessWidget {
             height: 45.0,
           ),
 
-//          Text(
-//            'olx',
-//            textAlign: TextAlign.center,
-//            style: TextStyle(
-//              fontSize: 80.0,
-//              fontWeight: FontWeight.bold,
-//              fontFamily: ('Roboto,Arial,Helvetica,sans-serif'),
-//              color: Colors.blueAccent[700],
-//            ),
-//          ),
-//          Text(
-//            'PAKISTAN',
-//            textAlign: TextAlign.center,
-//            style: TextStyle(
-//              fontSize: 20.0,
-//              fontWeight: FontWeight.bold,
-//              fontFamily: ('Raleway'),
-//              color: Colors.blueAccent[700],
-//            ),
-//          ),
+
           SizedBox(
             height: 10.0,
           ),
@@ -132,30 +113,7 @@ class LoginPage extends StatelessWidget {
           SizedBox(
             height: 10.0,
           ),
-          /*   customRaisedBtn(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                Text(
-                  'Continue With Phone',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 15.0,
-                  ),
-                ),
-               */ /* Opacity(
-                  opacity: 0.0,
-                  child: Image.asset('images/create-a-logo-png.png'),
-                ),*/ /*
-              ],
-            ),
-            color: Colors.blueAccent[700],
-            onPressed: () {},
-            borderRadius: 4.0,
-          ),
-          SizedBox(
-            height: 10.0,
-          ),*/
+
           Text(
             'OR',
             textAlign: TextAlign.center,

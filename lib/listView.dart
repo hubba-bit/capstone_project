@@ -4,8 +4,19 @@ class AdsListingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.indigo,
+         title:Text('Jobs'),
+         elevation: 17.0,
+         /* actions: <Widget>[
+        IconButton(onPressed: (){},
+            icon: Icon(Icons.search),
+          ),],*/
+      ),
         body: ListView(
-      children: getMenuTiles(),
+      children: getMenuTiles(
+
+      ),
     ));
   }
 
@@ -32,6 +43,7 @@ class AdsListingPage extends StatelessWidget {
 
     for (var item in tileDetails) {
       tiles.add(ListTile(
+
         leading: CircleAvatar(
           backgroundImage: AssetImage(item.url),
         ),
