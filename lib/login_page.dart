@@ -58,7 +58,9 @@ class LoginPage extends StatelessWidget {
           SizedBox(
             height: 10.0,
           ),
-          customRaisedBtn(
+          SizedBox(
+            height:47.0,
+          child:customRaisedBtn(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
@@ -76,14 +78,18 @@ class LoginPage extends StatelessWidget {
                 ),
               ],
             ),
+
             color: Colors.white,
             onPressed: _signInWithGoogle,
             borderRadius: 5.0,
           ),
-          SizedBox(
-            height: 10.0,
           ),
-          customRaisedBtn(
+          SizedBox(
+            height: 14.0,
+          ),
+          SizedBox(
+            height:47.0,
+         child: customRaisedBtn(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
@@ -106,12 +112,15 @@ class LoginPage extends StatelessWidget {
                 ),
               ],
             ),
+
             color: Colors.blueAccent[700],
             onPressed: () {},
             borderRadius: 4.0,
           ),
+          ),
+
           SizedBox(
-            height: 10.0,
+            height: 12.0,
           ),
 
           Text(
@@ -123,8 +132,10 @@ class LoginPage extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          SizedBox(height: 8.0),
-          customRaisedBtn(
+          SizedBox(height: 10.0),
+          SizedBox(
+            height:45.0,
+          child:customRaisedBtn(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
@@ -153,6 +164,7 @@ class LoginPage extends StatelessWidget {
             onPressed: _signInAnonymously,
             borderRadius: 6.0,
           ),
+            ),
           SizedBox(
             height: 35.0,
           ),

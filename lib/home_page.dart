@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'Auth.dart';
+import 'package:flutter/src/widgets/media_query.dart';
 
 class HomePage extends StatelessWidget {
   final context;
@@ -22,7 +23,14 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {},
+        elevation: 5.0,
+        splashColor: Colors.blueGrey,
+      ),
       appBar: AppBar(
         /* leading: IconButton(
           onPressed: (){},
@@ -58,79 +66,84 @@ class HomePage extends StatelessWidget {
   }
 
   Widget _homePageContent() {
+
     return Container(
-      /*decoration: BoxDecoration(
-        color: Colors.grey,
-        borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(10),
-            topRight: Radius.circular(10),
-            bottomLeft: Radius.circular(10),
-            bottomRight: Radius.circular(10)
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.5),
-            spreadRadius: 5,
-            blurRadius: 7,
-            offset: Offset(0, 3), // changes position of shadow
-          ),
-        ],
-      ),*/
-      padding: EdgeInsets.all(25.0),
+
+
+       padding: EdgeInsets.all(50.0),
       child: Column(
+
         children: <Widget>[
           SizedBox(
-            height: 9.0,
+            height: 18.0,
           ),
+
           Row(
             children: <Widget>[
-              MenuButton(
+              SizedBox(height: 160,
+                width:145,
+              child:MenuButton(
                 text: "Vehicles",
                 icon: Icons.directions_car,
               ),
-              SizedBox(
-                width: 12.0,
               ),
-              MenuButton(
+              SizedBox(
+                width: 18.0,
+              ),
+              SizedBox(height: 160,
+                width:147,
+             child: MenuButton(
                 text: "Mobiles",
                 icon: Icons.smartphone,
-              ),
+              ),),
             ],
           ),
           SizedBox(
-            height: 18.0,
+            height: 20.0,
           ),
           Row(
             children: <Widget>[
-              MenuButton(
+              SizedBox(
+                height:160.0,
+                width:145.0,
+                child: MenuButton(
                 text: "Animals",
                 icon: Icons.pets,
+              ),),
+              SizedBox(
+                width: 20.0,
               ),
               SizedBox(
-                width: 12.0,
-              ),
-              MenuButton(
+                height:160.0,
+                width:145.0,
+                child: MenuButton(
                 text: "Property",
                 icon: Icons.home,
-              ),
+              ),),
             ],
           ),
           SizedBox(
-            height: 18.0,
+            height: 20.0,
           ),
           Row(
             children: <Widget>[
-              MenuButton(
+              SizedBox(
+                height:160.0,
+                width:145.0,
+                child: MenuButton(
                 text: "Jobs",
                 icon: Icons.business_center,
+              ),),
+              SizedBox(
+                width: 18.0,
               ),
               SizedBox(
-                width: 12.0,
-              ),
-              MenuButton(
+                height:160.0,
+                width:145.0,
+                child: MenuButton(
                 text: "Electronics",
                 icon: Icons.laptop_chromebook,
-              ),
+              ),),
             ],
           ),
         ],
