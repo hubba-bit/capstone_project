@@ -23,7 +23,6 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
@@ -38,7 +37,7 @@ class HomePage extends StatelessWidget {
         ),
 */
         title: Text(
-          'All Categories',
+          'Categories',
           style: TextStyle(
             fontSize: 22.0,
             color: Colors.white,
@@ -60,42 +59,40 @@ class HomePage extends StatelessWidget {
           )
         ],
       ),
-      body: _homePageContent(),
+      body: _homePageContent(context),
       backgroundColor: Colors.grey[200],
     );
   }
 
-  Widget _homePageContent() {
+  Widget _homePageContent(BuildContext context) {
+    final double height = ((MediaQuery.of(context).size.height - 90) / 3) - 24;
+    final double width = (MediaQuery.of(context).size.width / 2) - 27;
 
     return Container(
-
-
-       padding: EdgeInsets.all(50.0),
-      child: Column(
-
+      padding: EdgeInsets.all(18),
+      child: ListView(
         children: <Widget>[
-          SizedBox(
-            height: 18.0,
-          ),
-
           Row(
             children: <Widget>[
-              SizedBox(height: 160,
-                width:145,
-              child:MenuButton(
-                text: "Vehicles",
-                icon: Icons.directions_car,
-              ),
+              SizedBox(
+                height: height,
+                width: width,
+                child: MenuButton(
+                  text: "Vehicles",
+                  icon: Icons.directions_car,
+                ),
               ),
               SizedBox(
                 width: 18.0,
               ),
-              SizedBox(height: 160,
-                width:147,
-             child: MenuButton(
-                text: "Mobiles",
-                icon: Icons.smartphone,
-              ),),
+              SizedBox(
+                height: 160,
+                width: width,
+                child: MenuButton(
+                  text: "Mobiles",
+                  icon: Icons.smartphone,
+                ),
+              ),
             ],
           ),
           SizedBox(
@@ -104,22 +101,24 @@ class HomePage extends StatelessWidget {
           Row(
             children: <Widget>[
               SizedBox(
-                height:160.0,
-                width:145.0,
+                height: height,
+                width: 145.0,
                 child: MenuButton(
-                text: "Animals",
-                icon: Icons.pets,
-              ),),
+                  text: "Animals",
+                  icon: Icons.pets,
+                ),
+              ),
               SizedBox(
                 width: 20.0,
               ),
               SizedBox(
-                height:160.0,
-                width:145.0,
+                height: 160.0,
+                width: 145.0,
                 child: MenuButton(
-                text: "Property",
-                icon: Icons.home,
-              ),),
+                  text: "Property",
+                  icon: Icons.home,
+                ),
+              ),
             ],
           ),
           SizedBox(
@@ -128,22 +127,24 @@ class HomePage extends StatelessWidget {
           Row(
             children: <Widget>[
               SizedBox(
-                height:160.0,
-                width:145.0,
+                height: height,
+                width: 145.0,
                 child: MenuButton(
-                text: "Jobs",
-                icon: Icons.business_center,
-              ),),
+                  text: "Jobs",
+                  icon: Icons.business_center,
+                ),
+              ),
               SizedBox(
                 width: 18.0,
               ),
               SizedBox(
-                height:160.0,
-                width:145.0,
+                height: 160.0,
+                width: 145.0,
                 child: MenuButton(
-                text: "Electronics",
-                icon: Icons.laptop_chromebook,
-              ),),
+                  text: "Electronics",
+                  icon: Icons.laptop_chromebook,
+                ),
+              ),
             ],
           ),
         ],
