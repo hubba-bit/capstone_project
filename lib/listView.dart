@@ -48,12 +48,14 @@ class AdsListingPage extends StatelessWidget {
           title: "Fluttter developer",
           subtitle: "Need experienced flutter developer",
           url:
-              "https://pixabay.com/photos/flower-nature-flora-petal-summer-3140492/"),
+              "https://pluralsight.imgix.net/paths/path-icons/csharp-e7b8fcd4ce.png?w=70",
+          price: 100),
       MenuTileDetail(
           title: "Node developer",
           subtitle: "Need node developer internee",
           url:
-              "https://hackr.io/tutorials/flutter/logo-flutter.svg?ver=1579862938"),
+              "https://pluralsight.imgix.net/paths/path-icons/csharp-e7b8fcd4ce.png?w=70",
+          price: 200),
     ];
 
     List<ListTile> tiles = <ListTile>[];
@@ -61,14 +63,12 @@ class AdsListingPage extends StatelessWidget {
     for (var item in tileDetails) {
       // ignore: unnecessary_statements
       tiles.add(ListTile(
-        leading: CircleAvatar(
-            // backgroundImage: AssetImage(item.url),
-            ),
+        leading: Image.network(item.url),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Text(item.title),
-            Text("5000"),
+            Text(item.price.toString()),
           ],
         ),
         subtitle: Text(item.subtitle),

@@ -65,8 +65,8 @@ class HomePage extends StatelessWidget {
   }
 
   Widget _homePageContent(BuildContext context) {
-    final double height = ((MediaQuery.of(context).size.height - 90) / 3) - 24;
-    final double width = (MediaQuery.of(context).size.width / 2) - 27;
+    final height = ((MediaQuery.of(context).size.height - 90) / 3) - 24;
+    final double width = (MediaQuery.of(context).size.width / 2) - 28;
 
     return Container(
       padding: EdgeInsets.all(18),
@@ -86,7 +86,7 @@ class HomePage extends StatelessWidget {
                 width: 18.0,
               ),
               SizedBox(
-                height: 160,
+                height: height,
                 width: width,
                 child: MenuButton(
                   text: "Mobiles",
@@ -102,7 +102,7 @@ class HomePage extends StatelessWidget {
             children: <Widget>[
               SizedBox(
                 height: height,
-                width: 145.0,
+                width: width,
                 child: MenuButton(
                   text: "Animals",
                   icon: Icons.pets,
@@ -112,8 +112,8 @@ class HomePage extends StatelessWidget {
                 width: 20.0,
               ),
               SizedBox(
-                height: 160.0,
-                width: 145.0,
+                height: height,
+                width: width,
                 child: MenuButton(
                   text: "Property",
                   icon: Icons.home,
@@ -128,7 +128,7 @@ class HomePage extends StatelessWidget {
             children: <Widget>[
               SizedBox(
                 height: height,
-                width: 145.0,
+                width: width,
                 child: MenuButton(
                   text: "Jobs",
                   icon: Icons.business_center,
@@ -138,8 +138,8 @@ class HomePage extends StatelessWidget {
                 width: 18.0,
               ),
               SizedBox(
-                height: 160.0,
-                width: 145.0,
+                height:height,
+                width: width,
                 child: MenuButton(
                   text: "Electronics",
                   icon: Icons.laptop_chromebook,
