@@ -137,8 +137,13 @@ class AdsListingPage extends StatelessWidget {
           title: "Node developer",
           subtitle: "Need node developer internee",
           url:
+<<<<<<< HEAD:lib/Screen/listView.dart
               "https://hackr.io/tutorials/flutter/logo-flutter.svg?ver=1579862938"),*//*
 
+=======
+              "https://pluralsight.imgix.net/paths/path-icons/csharp-e7b8fcd4ce.png?w=70",
+          price: 200),
+>>>>>>> a8e2ea867bcb75ee104566d429c46d170380b3eb:lib/listView.dart
     ];
 
     List<ListTile> tiles = <ListTile>[];
@@ -150,8 +155,13 @@ class AdsListingPage extends StatelessWidget {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
+<<<<<<< HEAD:lib/Screen/listView.dart
             Text(item.Title),
+            Text("5000"),
+=======
+            Text(item.title),
             Text(item.price.toString()),
+>>>>>>> a8e2ea867bcb75ee104566d429c46d170380b3eb:lib/listView.dart
           ],
         ),
         subtitle: Text(item.Description),

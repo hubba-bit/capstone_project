@@ -68,8 +68,8 @@ class HomePage extends StatelessWidget {
   }
 
   Widget _homePageContent(BuildContext context) {
-    final double height = ((MediaQuery.of(context).size.height - 90) / 3) - 24;
-    final double width = (MediaQuery.of(context).size.width / 2) - 27;
+    final height = ((MediaQuery.of(context).size.height - 90) / 3) - 24;
+    final double width = (MediaQuery.of(context).size.width / 2) - 28;
 
     return Container(
       padding: EdgeInsets.all(18),
