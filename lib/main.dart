@@ -1,8 +1,8 @@
 import 'package:bechdoapp/Auth.dart';
-import 'package:bechdoapp/home_page.dart';
-import 'package:bechdoapp/login_page.dart';
+import 'package:bechdoapp/Screen/home_page.dart';
+import 'package:bechdoapp/Screen/login_page.dart';
 import 'package:flutter/material.dart';
-import 'landingPage.dart';
+import 'Screen/landingPage.dart';
 
 void main(){
   runApp(MyApp());
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         backgroundColor: Colors.black54,
 
       ),
-      home: HomePage(
+      home: LandingPage(
         auth: Auth(),
 
       ),

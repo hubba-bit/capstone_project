@@ -2,7 +2,7 @@ import 'package:bechdoapp/Auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'customRaisedBtn.dart';
+import '../customRaisedBtn.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({@required this.auth});
@@ -23,6 +23,14 @@ class LoginPage extends StatelessWidget {
       print(e.toString());
     }
   }
+
+ /* Future<void> _signInWithFacebook() async {
+    try {
+      await auth.signInWithFacebook();
+    } catch (e) {
+      print(e.toString());
+    }
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -114,7 +122,7 @@ class LoginPage extends StatelessWidget {
             ),
 
             color: Colors.blueAccent[700],
-            onPressed: () {},
+            onPressed: (){},/*_signInWithFacebook*/
             borderRadius: 4.0,
           ),
           ),

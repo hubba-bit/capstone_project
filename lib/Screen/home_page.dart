@@ -1,10 +1,10 @@
-import 'package:bechdoapp/login_page.dart';
+import 'package:bechdoapp/Screen/login_page.dart';
 import 'package:bechdoapp/menuButton.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'Auth.dart';
-import 'package:flutter/src/widgets/media_query.dart';
+import 'adsPost.dart';
+import '../Auth.dart';
 
 class HomePage extends StatelessWidget {
   final context;
@@ -26,7 +26,10 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => AdsPost()));
+        },
         elevation: 5.0,
         splashColor: Colors.blueGrey,
       ),
@@ -86,7 +89,7 @@ class HomePage extends StatelessWidget {
                 width: 18.0,
               ),
               SizedBox(
-                height: 160,
+                height: height,
                 width: width,
                 child: MenuButton(
                   text: "Mobiles",
@@ -96,24 +99,24 @@ class HomePage extends StatelessWidget {
             ],
           ),
           SizedBox(
-            height: 20.0,
+            height: 18.0,
           ),
           Row(
             children: <Widget>[
               SizedBox(
                 height: height,
-                width: 145.0,
+                width: width,
                 child: MenuButton(
                   text: "Animals",
                   icon: Icons.pets,
                 ),
               ),
               SizedBox(
-                width: 20.0,
+                width: 18.0,
               ),
               SizedBox(
-                height: 160.0,
-                width: 145.0,
+                height: height,
+                width: width,
                 child: MenuButton(
                   text: "Property",
                   icon: Icons.home,
@@ -122,13 +125,13 @@ class HomePage extends StatelessWidget {
             ],
           ),
           SizedBox(
-            height: 20.0,
+            height: 18.0,
           ),
           Row(
             children: <Widget>[
               SizedBox(
                 height: height,
-                width: 145.0,
+                width: width,
                 child: MenuButton(
                   text: "Jobs",
                   icon: Icons.business_center,
@@ -138,8 +141,8 @@ class HomePage extends StatelessWidget {
                 width: 18.0,
               ),
               SizedBox(
-                height: 160.0,
-                width: 145.0,
+                height: height,
+                width: width,
                 child: MenuButton(
                   text: "Electronics",
                   icon: Icons.laptop_chromebook,
