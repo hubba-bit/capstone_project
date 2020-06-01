@@ -1,60 +1,180 @@
+
+
+import 'dart:html';
+
+import 'package:bechdoapp/Screen/adsPost.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter/widgets.dart';
+import 'package:image_picker/image_picker.dart';
 
 
 class ListScreen extends StatefulWidget {
+
   @override
   _ListScreenState createState() => _ListScreenState();
 }
 
 class _ListScreenState extends State<ListScreen> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: <Widget>[
 
+  List<IconData> _icons = [
+    Icons.directions_car,
+    Icons.smartphone,
+    Icons.pets,
+    Icons.home,
+    Icons.business_center,
+    Icons.laptop_chromebook,
+  ];
 
-          Expanded(
-            child: StreamBuilder<QuerySnapshot>(
-              stream: Firestore.instance.collection('posts').snapshots(),
-              builder: (BuildContext, AsyncSnapshot<QuerySnapshot> querySnapshot) {
-                if (querySnapshot.hasError)
-                  return Text('some eror');
-                if (querySnapshot.connectionState == ConnectionState.waiting) {
-                  return CircularProgressIndicator();
-                }
-                else {
-                  final list = querySnapshot.data.documents;
-                  return ListView.builder(
-                      itemBuilder: (context, index) {
-                        return ListTile(
-                          title:Text( list[index]['Title']),
-                          subtitle: Text(list[index]['Description']),
-
-                        );
-                      },
-                      itemCount:list.length,
-                  );
-                }
-              }
-
-            ),
-
-          )
-        ],
+  Widget _buildIcon(int index) {
+    return Container(
+      height: 55.0,
+      width: 55.0,
+      decoration: BoxDecoration(
+        color: Theme
+            .of(context)
+            .splashColor,
+        borderRadius: BorderRadius.circular(30.0),
 
       ),
-
-
+      child: Icon(_icons[index], size: 30.0, color: Theme
+          .of(context)
+          .accentColor,
+      ),
     );
   }
-}
 
 
+  @override
+  Widget build(BuildContext context) {
+
+      return Scaffold(
+        floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.add),
+          onPressed: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => AdsPost()));
+          },
+          elevation: 5.0,
+          splashColor: Colors.blueGrey,
+        ),
+        appBar: AppBar(
+          backgroundColor: Colors.indigo,
+          title: Text('Jobs'),
+          elevation: 17.0,
+        ),
+        body: Column(
+
+          children: <Widget>[
+            IconButton(
+              icon: Icon(Icons.camera, size: 30.0,
+              ),
+
+            ),
+            Padding(
+              padding: EdgeInsets.only(left: 20.0, right: 120.0, top: 16.0),
+              child: Text('What would you like to find?', style: TextStyle(
+                fontSize: 30.0, fontWeight: FontWeight.bold,
+              ),
+              ),
+            ),
+            SizedBox(
+              height: 20.0,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                _buildIcon(0),
+                _buildIcon(1),
+                _buildIcon(2),
+                _buildIcon(3),
+                _buildIcon(4),
+                _buildIcon(5),
 
 
+              ],
+            ),
+
+            /* Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                */
+            SizedBox(
+              height: 22.0,
+            ),
+            Expanded(
+              child: StreamBuilder<QuerySnapshot>(
+                  stream: Firestore.instance.collection('posts').snapshots(),
+                  builder:
+                      (BuildContext,
+                      AsyncSnapshot<QuerySnapshot> querySnapshot) {
+                    if (querySnapshot.hasError) return Text('some eror');
+                    if (querySnapshot.connectionState ==
+                        ConnectionState.waiting) {
+                      return Container(
+                        child: Center(
+                          child: Text('Loading....'),
+                        ),
+                      );
+                    } else {
+                      final list = querySnapshot.data.documents;
+                      return ListView.builder(
+                        itemBuilder: (context, index) {
+                          return Card(
+
+                            child: ListTile(
+
+                              leading: CircleAvatar(
+                                radius: 25.0,
+                               /* child: (_image != null) ? Image.file(
+                                    _image, fit: BoxFit.fill) :
+                                Image.network(''),*/
+                              ),
+
+                              title: Text(list[index]['title']),
+                              // subtitle: Text(list[index]['subtitle']),
+                              /* isThreeLine: true,
+                            subtitle: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Text(list[index]['subtitle']),
+                                Text(list[index]['price']),
+                              ],
+                            ),*/
+                              // leading: Image.network(),
+                              subtitle: Text(list[index]['subtitle']),
+
+
+                              trailing: Column(
+                                // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+
+                                children: <Widget>[
+                                  Padding(padding: EdgeInsets.only(top: 10.0),),
+                                  Text('Rs.'),
+                                  Text(list[index]['price']),
+                                ],
+                              ),
+
+                              // isThreeLine: true,
+                              /*onTap: () {
+                                  (list[index]['price']);
+                                }*/
+
+                            ),
+                          );
+                        },
+                        itemCount: list.length,
+                      );
+                    }
+                  }),
+            )
+          ],
+        ),
+      );
+    }
+  }
 
 /*
 import 'package:flutter/material.dart';
@@ -84,7 +204,7 @@ class AdsListingPage extends StatelessWidget {
 /* actions: <Widget>[
         IconButton(onPressed: (){},
             icon: Icon(Icons.search),
-          ),],*//*
+          ),],*/ /*
 
           actions: <Widget>[
             IconButton(
@@ -137,7 +257,7 @@ class AdsListingPage extends StatelessWidget {
           title: "Node developer",
           subtitle: "Need node developer internee",
           url:
-              "https://hackr.io/tutorials/flutter/logo-flutter.svg?ver=1579862938"),*//*
+              "https://hackr.io/tutorials/flutter/logo-flutter.svg?ver=1579862938"),*/ /*
 
     ];
 
@@ -173,3 +293,37 @@ class DateField {
   final int date;
   DateField({this.date});
 }*/
+/*
+
+class ImageUpload extends StatefulWidget {
+  @override
+  _ImageUploadState createState() => _ImageUploadState();
+}
+
+class _ImageUploadState extends State<ImageUpload> {
+  File _image;
+  @override
+  Widget build(BuildContext context) {
+    Future getImage () async{
+      // ignore: deprecated_member_use
+      var image = await ImagePicker.pickImage(source: ImageSource.gallery);
+      setState(() {
+        _image =image as File ;
+        print('Image path $_image');
+      });
+    }
+    return Scaffold(
+      body: Container(
+
+        child: IconButton(icon: Icon(Icons.camera, size: 30.0,),
+            onPressed:(){
+              getImage();
+            }),
+
+      ),
+    );
+  }
+}
+}
+
+ */

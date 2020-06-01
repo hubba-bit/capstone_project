@@ -1,6 +1,11 @@
+
+import 'package:image_picker/image_picker.dart';
+import 'package:bechdoapp/Screen/listView.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-
+import 'package:image_picker/image_picker.dart';
+import 'dart:html';
+import 'package:firebase_storage/firebase_storage.dart';
 // ignore: non_constant_identifier_names
 Future<void> _adPost(String Title, String Description, String Price) async {
   await Firestore.instance.collection('posts').document().setData({
@@ -11,6 +16,7 @@ Future<void> _adPost(String Title, String Description, String Price) async {
 }
 
 class AdsPost extends StatelessWidget {
+ File _imageFile;
   final a = TextEditingController();
   final b = TextEditingController();
   final c = TextEditingController();
@@ -26,7 +32,8 @@ class AdsPost extends StatelessWidget {
         backgroundColor: Colors.blueAccent,
         elevation: 17.0,
         actions: <Widget>[
-          FlatButton(padding: EdgeInsets.all(7.0),
+          FlatButton(
+            padding: EdgeInsets.all(7.0),
             child: Text(
               'Post Now',
               style: TextStyle(
@@ -34,13 +41,13 @@ class AdsPost extends StatelessWidget {
                 color: Colors.white,
               ),
               softWrap: true,
-
             ),
-
             color: Colors.black12,
-
             onPressed: () {
               _adPost(a.text, b.text, c.text);
+    Navigator.push(
+    context, MaterialPageRoute(builder: (context) => ListScreen()));
+
             },
           )
         ],
@@ -90,21 +97,17 @@ class AdsPost extends StatelessWidget {
           height: 30.0,
         ),
         TextFormField(
-
           controller: b,
           decoration: new InputDecoration(
-
             border: new OutlineInputBorder(
                 borderSide: new BorderSide(color: Colors.teal)),
             // hintText: 'Tell us about yourself',
 
             helperText: 'Enter Your Ad Description  Here',
             labelText: 'Description',
-            isDense: true,                      // Added this
-            contentPadding: EdgeInsets.fromLTRB(14,0,0,80),
+            isDense: true, // Added this
+            contentPadding: EdgeInsets.fromLTRB(14, 0, 0, 80),
           ),
-
-
         ),
         SizedBox(
           height: 30.0,
@@ -116,13 +119,72 @@ class AdsPost extends StatelessWidget {
                 borderSide: new BorderSide(color: Colors.teal)),
             helperText: 'Enter Your Ad Price  Here',
             labelText: 'Price',
+
           ),
           keyboardType: TextInputType.number,
         ),
       ]),
     );
   }
+
+
 }
+
+
+class ImageUpload extends StatefulWidget {
+  @override
+  _ImageUploadState createState() => _ImageUploadState();
+}
+
+class _ImageUploadState extends State<ImageUpload> {
+
+  File _imageFile;
+
+  Future<void> _pickImage(ImageSource source) async{
+  // ignore: deprecated_member_use
+  File selected = (await ImagePicker.pickImage(source: ImageSource.gallery)) as File;
+    setState((){
+      _imageFile = selected;
+  });
+  }
+  void _clear (){
+    setState(()
+    => _imageFile=null
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      bottomNavigationBar: BottomAppBar(
+        
+        child: Row(
+          children: <Widget>[
+            IconButton(
+              icon: Icon(Icons.photo_camera),
+              onPressed: ()=> _pickImage(ImageSource.camera),
+            ),
+      IconButton(
+        icon: Icon(Icons.photo_library),
+        onPressed: ()=> _pickImage(ImageSource.gallery),),
+          ],
+        ),
+      ),
+      body: ListView(
+        children: <Widget>[
+          if(_imageFile !=  null) ...[
+            Image.file(_imageFile),
+
+              ],
+
+          ],
+
+      ),
+    );
+  }
+}
+
+
 
 /* AdsPostingBtn(
               keyboardType: TextInputType.number,

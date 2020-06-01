@@ -14,13 +14,16 @@ description: A new Flutter application.
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.2.0 <3.0.0"
 
 dependencies:
   firebase_auth: ^0.16.0
   google_sign_in: ^4.4.4
   cloud_firestore: ^0.13.6
   firebase_core: ^0.4.5
+  firebase_storage: ^3.1.6
+  image_picker: ^0.6.7
+
 
   flutter:
     sdk: flutter
