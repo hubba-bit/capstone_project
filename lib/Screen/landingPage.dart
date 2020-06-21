@@ -12,7 +12,7 @@ class LandingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder(
+    return StreamBuilder<User>(
       stream: auth.onAuthStateChanged,
       builder: (context, snapshots) {
         if (snapshots.connectionState == ConnectionState.active) {

@@ -3,16 +3,17 @@ import 'package:bechdoapp/menuButton.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'adsPost.dart';
 import '../Auth.dart';
+import 'adsPost.dart';
 
 class HomePage extends StatelessWidget {
+  final AuthBase auth;
+
   final context;
   HomePage({
     @required this.auth,
     this.context,
   });
-  final AuthBase auth;
   Future<void> _signOut() async {
     try {
       auth.signOut();
@@ -24,16 +25,24 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => AdsPost()));
-        },
-        elevation: 5.0,
-        splashColor: Colors.blueGrey,
+
+      floatingActionButton: Container(
+        height: 65.0,
+        width: 65.0,
+        child: FloatingActionButton(
+          child: Icon(Icons.add),
+          onPressed: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => AdsPost()));
+          },
+          elevation: 5.0,
+          splashColor: Colors.grey,
+        ),
+
       ),
+     
       appBar: AppBar(
+        elevation: 10.0,
         /* leading: IconButton(
           onPressed: (){},
           icon: Icon(Icons.menu),

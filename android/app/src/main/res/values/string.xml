@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="facebook_app_id">2701115133505482</string>
+    <string name="app_name">Capstone Project</string>
+    <string name="fb_login_protocol_scheme">fb2701115133505482</string>
+
+</resources>

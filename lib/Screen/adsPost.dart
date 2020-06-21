@@ -1,25 +1,31 @@
 
-import 'package:image_picker/image_picker.dart';
 import 'package:bechdoapp/Screen/listView.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
-import 'dart:html';
-import 'package:firebase_storage/firebase_storage.dart';
+import 'package:bechdoapp/imageUpload.dart';
 // ignore: non_constant_identifier_names
-Future<void> _adPost(String Title, String Description, String Price) async {
+Future<void> _adPost(String Title, String Description, String Price,String Mobile) async {
   await Firestore.instance.collection('posts').document().setData({
     'title': Title,
     'subtitle': Description,
     'price': Price,
+    'Mobile': Mobile,
+
   });
 }
 
 class AdsPost extends StatelessWidget {
- File _imageFile;
+  //File _imageFile;
   final a = TextEditingController();
   final b = TextEditingController();
   final c = TextEditingController();
+  final d = TextEditingController();
+
+//  final e = TextEditingController();
+
+  // ignore: missing_return
 
   /*void dispose() {
     // Clean up the controller when the widget is disposed.
@@ -29,25 +35,26 @@ class AdsPost extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blueAccent,
+        // title: Text('Post Your Ad'),
+        backgroundColor: Colors.indigo,
         elevation: 17.0,
         actions: <Widget>[
           FlatButton(
             padding: EdgeInsets.all(7.0),
             child: Text(
-              'Post Now',
+              'Next',
               style: TextStyle(
-                fontSize: 16.0,
+                fontSize: 20.0,
                 color: Colors.white,
               ),
               softWrap: true,
             ),
             color: Colors.black12,
             onPressed: () {
-              _adPost(a.text, b.text, c.text);
-    Navigator.push(
-    context, MaterialPageRoute(builder: (context) => ListScreen()));
-
+              _adPost(a.text, b.text, c.text, d.text);
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MyHomePage()));
             },
           )
         ],
@@ -57,8 +64,14 @@ class AdsPost extends StatelessWidget {
   }
 
   Widget _adsPosting(BuildContext context) {
-    final double height = ((MediaQuery.of(context).size.height - 100) / 1) - 24;
-    final double width = (MediaQuery.of(context).size.width / 1) - 27;
+    final double height = ((MediaQuery
+        .of(context)
+        .size
+        .height - 100) / 1) - 24;
+    final double width = (MediaQuery
+        .of(context)
+        .size
+        .width / 1) - 27;
 
     return Container(
       margin: EdgeInsets.all(30.0),
@@ -105,7 +118,8 @@ class AdsPost extends StatelessWidget {
 
             helperText: 'Enter Your Ad Description  Here',
             labelText: 'Description',
-            isDense: true, // Added this
+            isDense: true,
+            // Added this
             contentPadding: EdgeInsets.fromLTRB(14, 0, 0, 80),
           ),
         ),
@@ -123,74 +137,26 @@ class AdsPost extends StatelessWidget {
           ),
           keyboardType: TextInputType.number,
         ),
+
+        SizedBox(
+          height: 28.0,
+        ),
+        TextFormField(
+          controller: d,
+          decoration: const InputDecoration(
+              border: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.teal),
+              ),
+              helperText: 'Enter Your Phone Number',
+              labelText: 'Mobile No'),
+          keyboardType: TextInputType.number,
+// initialValue: "5",
+//      onSaved: (input) => _value = num.tryParse(input),
+
+        ),
       ]),
     );
   }
 
 
 }
-
-
-class ImageUpload extends StatefulWidget {
-  @override
-  _ImageUploadState createState() => _ImageUploadState();
-}
-
-class _ImageUploadState extends State<ImageUpload> {
-
-  File _imageFile;
-
-  Future<void> _pickImage(ImageSource source) async{
-  // ignore: deprecated_member_use
-  File selected = (await ImagePicker.pickImage(source: ImageSource.gallery)) as File;
-    setState((){
-      _imageFile = selected;
-  });
-  }
-  void _clear (){
-    setState(()
-    => _imageFile=null
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: BottomAppBar(
-        
-        child: Row(
-          children: <Widget>[
-            IconButton(
-              icon: Icon(Icons.photo_camera),
-              onPressed: ()=> _pickImage(ImageSource.camera),
-            ),
-      IconButton(
-        icon: Icon(Icons.photo_library),
-        onPressed: ()=> _pickImage(ImageSource.gallery),),
-          ],
-        ),
-      ),
-      body: ListView(
-        children: <Widget>[
-          if(_imageFile !=  null) ...[
-            Image.file(_imageFile),
-
-              ],
-
-          ],
-
-      ),
-    );
-  }
-}
-
-
-
-/* AdsPostingBtn(
-              keyboardType: TextInputType.number,
-              inputFormatters: <TextInputFormatter>[
-                WhitelistingTextInputFormatter.digitsOnly
-              ],
-            ),
-          ],
-        ));*/
