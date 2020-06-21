@@ -1,4 +1,3 @@
-
 import 'package:bechdoapp/Screen/listView.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -6,14 +5,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:bechdoapp/imageUpload.dart';
 // ignore: non_constant_identifier_names
-Future<void> _adPost(String Title, String Description, String Price,String Mobile) async {
-  await Firestore.instance.collection('posts').document().setData({
+Future<String> _adPost(
+    String Title, String Description, String Price, String Mobile) async {
+  final docRef = Firestore.instance.collection('posts').document();
+  await docRef.setData({
     'title': Title,
     'subtitle': Description,
     'price': Price,
-    'Mobile': Mobile,
-
+    'mobile': Mobile,
   });
+  return docRef.documentID;
 }
 
 class AdsPost extends StatelessWidget {
@@ -50,11 +51,12 @@ class AdsPost extends StatelessWidget {
               softWrap: true,
             ),
             color: Colors.black12,
-            onPressed: () {
-              _adPost(a.text, b.text, c.text, d.text);
+            onPressed: () async {
+              final docId = await _adPost(a.text, b.text, c.text, d.text);
               Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => MyHomePage()));
+                  MaterialPageRoute(
+                      builder: (context) => MyHomePage(docId)));
             },
           )
         ],

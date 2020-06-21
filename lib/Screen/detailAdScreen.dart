@@ -35,30 +35,24 @@ class _DetailAdPageState extends State<DetailAdPage> {
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              Stack(
-                children: <Widget>[
-                  Container(
-                    padding:
-                        EdgeInsets.only(left: 30.0, right: 30.0, top: 60.0),
-                    height: 290.0,
-                    color: Colors.grey[100],
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: <Widget>[
-                            /*   Icon(
-                              Icons.share,
-                              size: 30.0,
-                              color: Colors.black,
-                            )*/
-                          ],
-                        )
-                      ],
-                    ),
-                  )
-                ],
+              Center(
+                child: Container(
+                  height: 250.0,
+                  color: Colors.grey[100],
+                  child: Column(
+                    children: <Widget>[
+                      Row(
+                        children: <Widget>[
+                          if (widget.posts["imageUrl"] != null)
+                            Image.network(
+                              widget.posts["imageUrl"],
+                              fit: BoxFit.fitWidth,
+                            )
+                        ],
+                      )
+                    ],
+                  ),
+                ),
               ),
               /* Positioned(
               child:Hero(
