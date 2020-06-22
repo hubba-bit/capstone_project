@@ -118,28 +118,30 @@ class _ListScreenState extends State<ListScreen> {
                 // ignore: missing_return
                 builder: ( context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return
-                    Center(
-                     child: Text('Loading...'),
-
+                    return Center(
+                      child: Text('Loading...'),
                     );
                   } else {
                     return ListView.builder(
                         itemCount: snapshot.data.length,
                         // ignore: missing_return
                         itemBuilder: (_, index) {
+                          final imageUrl =
+                              snapshot.data[index].data["imageUrl"];
+                          final title = snapshot.data[index].data["title"];
                           return Card(
                             color: Colors.grey[200],
                             child: ListTile(
                               leading: CircleAvatar(
-                                  backgroundImage:  (
-                                      snapshot.data[index].data["ImageUrl"]
-                                  ),
+                                backgroundImage: imageUrl != null
+                                    ? NetworkImage(imageUrl)
+                                    : null,
                                 radius: 25.0,
                               ),
                               title: Text(snapshot.data[index].data["title"]),
-                              onTap: () => navigateToDetail(snapshot.data[index]),
-                             /* subtitle:
+                              onTap: () =>
+                                  navigateToDetail(snapshot.data[index]),
+                              /* subtitle:
                                   Text(snapshot.data[index].data["subtitle"]),*/
                               trailing: Column(
                                 children: <Widget>[
@@ -164,8 +166,4 @@ class _ListScreenState extends State<ListScreen> {
     QuerySnapshot qn = await firestore.collection("posts").getDocuments();
     return qn.documents;
   }
-
-
-
-  }
-
+}
