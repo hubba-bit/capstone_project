@@ -6,9 +6,9 @@ import 'package:flutter/widgets.dart';
 
 
 class MenuButton extends StatelessWidget {
-  final String text;
+  final String text ;
   final IconData icon;
-  MenuButton({@required this.text, this.icon});
+  MenuButton({@required this.text, this.icon,});
 
   @override
   Widget build(BuildContext context) {
@@ -35,8 +35,7 @@ class MenuButton extends StatelessWidget {
           SizedBox(
             height: 10.0,
           ),
-          Text(
-            text,
+          Text(text,
             style: TextStyle(
               fontStyle: FontStyle.normal,
               fontSize: 20.0,

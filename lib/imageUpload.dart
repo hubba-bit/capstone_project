@@ -57,7 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text('Upload Your Photos'),
         backgroundColor: Colors.indigo,
         elevation: 17.0,
-        actions: <Widget>[
+        /*actions: <Widget>[
           FlatButton(
             padding: EdgeInsets.all(7.0),
             child: Text(
@@ -74,7 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   MaterialPageRoute(builder: (context) => ListScreen()));
             },
           )
-        ],
+        ],*/
       ),
       body: _SubmitPost(context),
     );
@@ -142,7 +142,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   height: 40.0,
                   child: RaisedButton(
                     child: Text(
-                      'Upload File',
+                      'Post Now',
                       style: TextStyle(
                         fontSize: 19.0,
                         color: Colors.white,

@@ -5,10 +5,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
-
+import 'package:bechdoapp/menuButton.dart';
 import 'detailAdScreen.dart';
 
 class ListScreen extends StatefulWidget {
+
+
   @override
   _ListScreenState createState() => _ListScreenState();
 }
@@ -123,37 +125,44 @@ class _ListScreenState extends State<ListScreen> {
                     );
                   } else {
                     return ListView.builder(
-                        itemCount: snapshot.data.length,
+                         itemCount: snapshot.data.length,
                         // ignore: missing_return
                         itemBuilder: (_, index) {
                           final imageUrl =
                               snapshot.data[index].data["imageUrl"];
                           final title = snapshot.data[index].data["title"];
-                          return Card(
-                            color: Colors.grey[200],
-                            child: ListTile(
-                              leading: CircleAvatar(
-                                backgroundImage: imageUrl != null
-                                    ? NetworkImage(imageUrl)
-                                    : null,
-                                radius: 25.0,
-                              ),
-                              title: Text(snapshot.data[index].data["title"]),
-                              onTap: () =>
-                                  navigateToDetail(snapshot.data[index]),
-                              /* subtitle:
-                                  Text(snapshot.data[index].data["subtitle"]),*/
-                              trailing: Column(
-                                children: <Widget>[
-                                  Padding(
-                                    padding: EdgeInsets.only(top: 10.0),
+                       //   final ImageAssets = Image.asset('images/bechdologo.jpeg');
+                          return SizedBox(
+                               height: 67.0,
+                              child: Card(
+                                color: Colors.grey[200],
+                                child: ListTile(
+
+                                  leading: CircleAvatar(
+                                    backgroundImage: imageUrl != null
+                                        ? NetworkImage(imageUrl)
+                                        : AssetImage('images/camera2.png'),
+
+                                    radius: 25.0,
                                   ),
-                                  Text('Rs.'),
-                                  Text(snapshot.data[index].data["price"]),
-                                ],
+                                  title: Text(snapshot.data[index].data["title"]),
+                                  onTap: () =>
+                                      navigateToDetail(snapshot.data[index]),
+                                  /* subtitle:
+                                      Text(snapshot.data[index].data["subtitle"]),*/
+                                  trailing: Column(
+                                    children: <Widget>[
+                                      Padding(
+                                        padding: EdgeInsets.only(top: 10.0),
+                                      ),
+                                      Text('Rs.'),
+                                      Text(snapshot.data[index].data["price"]),
+                                    ],
+                                  ),
+                                ),
                               ),
-                            ),
-                          );
+                            );
+                         // );
                         });
                   }
                 }),

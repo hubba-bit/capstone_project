@@ -1,10 +1,11 @@
 import 'package:bechdoapp/Screen/login_page.dart';
+import 'package:bechdoapp/Screen/platformAlertDialog.dart';
 import 'package:bechdoapp/menuButton.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:gradient_app_bar/gradient_app_bar.dart';
 import '../Auth.dart';
-import 'adsPost.dart';
 
 class HomePage extends StatelessWidget {
   final AuthBase auth;
@@ -14,19 +15,29 @@ class HomePage extends StatelessWidget {
     @required this.auth,
     this.context,
   });
-  Future<void> _signOut() async {
+  Future<void> _signOut( BuildContext context) async {
     try {
       auth.signOut();
     } catch (e) {
       print(e.toString());
     }
   }
-
+Future<void> _confirmSignOut(BuildContext context) async{
+    final didRequestSignOut = await PlatformAlertDialog(
+      title: 'Logout',
+      content: 'Are You Sure You want to log out',
+      defaultActionText: 'Logout',
+      cancelActionText: 'No',
+    ).show(context);
+    if(didRequestSignOut)
+      _signOut(context);
+    
+}
   @override
   Widget build(BuildContext context) {
     return Scaffold(
 
-      floatingActionButton: Container(
+      /*floatingActionButton: Container(
         height: 65.0,
         width: 65.0,
         child: FloatingActionButton(
@@ -40,8 +51,10 @@ class HomePage extends StatelessWidget {
         ),
 
       ),
-     
-      appBar: AppBar(
+     */
+      appBar: GradientAppBar(
+        backgroundColorStart: Colors.indigoAccent,
+        backgroundColorEnd: Colors.indigo,
         elevation: 10.0,
         /* leading: IconButton(
           onPressed: (){},
@@ -67,7 +80,7 @@ class HomePage extends StatelessWidget {
                 color: Colors.white,
               ),
             ),
-            onPressed: _signOut,
+            onPressed: () => _confirmSignOut(context),
           )
         ],
       ),

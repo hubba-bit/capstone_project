@@ -1,239 +1,154 @@
-/*
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'home_page.dart';
-import 'otpInput.dart';
-import 'phoneAuth.dart';
-class OTPScreen extends StatefulWidget {
-  final String mobileNumber;
-  OTPScreen({
-    Key key,
-    @required this.mobileNumber,
-  })  : assert(mobileNumber != null),
-        super(key: key);
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:gradient_app_bar/gradient_app_bar.dart';
 
+class HomePagge extends StatefulWidget {
   @override
-  _OTPScreenState createState() => _OTPScreenState();
+  _HomePaggeState createState() => _HomePaggeState();
 }
 
-class _OTPScreenState extends State<OTPScreen> {
-  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+class _HomePaggeState extends State<HomePagge> {
+  String phoneNo;
+  String smsCode;
+  String verificationId;
 
-  /// Control the input text field.
-  TextEditingController _pinEditingController = TextEditingController();
+  Future<void> verifyPhone() async {
+    final PhoneCodeAutoRetrievalTimeout autoRetrieve = (String verId) {
+      this.verificationId = verId;
+    };
 
-  /// Decorate the outside of the Pin.
-  PinDecoration _pinDecoration =
-  UnderlineDecoration(enteredColor: Colors.black, hintText: '333333');
+    final PhoneCodeSent smsCodeSent = (String verId, [int forceCodeResend]) {
+      this.verificationId = verId;
+      smsCodeDialog(context).then((value) {
+        print('Signed In');
+      });
+    };
 
-  bool isCodeSent = false;
-  String _verificationId;
+    final PhoneVerificationCompleted verifiedSuccess =
+        (AuthCredential credential) {
+      print('Verified');
+    };
 
-  @override
-  void initState() {
-    super.initState();
-    _onVerifyCode();
+    final PhoneVerificationFailed verifiFailed = (AuthException exception) {
+      print('${exception.message}');
+    };
+
+    await FirebaseAuth.instance.verifyPhoneNumber(
+      phoneNumber: this.phoneNo,
+      codeAutoRetrievalTimeout: autoRetrieve,
+      codeSent: smsCodeSent,
+      timeout: const Duration(seconds: 8),
+      verificationCompleted: verifiedSuccess,
+      verificationFailed: verifiFailed,
+    );
+  }
+
+  Future<bool> smsCodeDialog(BuildContext context) {
+    return showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Enter the SMS Code Below'),
+            content: TextField(
+              onChanged: (value) {
+                this.smsCode = value;
+              },
+            ),
+            contentPadding: EdgeInsets.all(10.0),
+            actions: <Widget>[
+              FlatButton(
+                child: Text(
+                  'Done',
+                ),
+                onPressed: () {
+                  FirebaseAuth.instance.currentUser().then((user) {
+                    if (user != null) {
+                      Navigator.of(context).pop();
+                      Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(builder: (BuildContext context) {
+                        return HomePagge();
+                      }));
+                    } else {
+                      Navigator.of(context).pop();
+                      signIn();
+                    }
+                  });
+                },
+              )
+            ],
+          );
+        });
+  }
+
+  signIn() async {
+    final AuthCredential credential = PhoneAuthProvider.getCredential(
+      verificationId: verificationId,
+      smsCode: smsCode,
+    );
+
+    FirebaseAuth _auth = FirebaseAuth.instance;
+    final FirebaseUser user =
+        await _auth.signInWithCredential(credential).then((user) {
+      Navigator.of(context)
+          .pushReplacement(MaterialPageRoute(builder: (BuildContext context) {
+        return HomePagge();
+      }));
+    }).catchError((e) {
+      print(e);
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    print("isValid - $isCodeSent");
-    print("mobiel ${widget.mobileNumber}");
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        elevation: 0.0,
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back_ios,
-          ),
-          color: Colors.white,
-          onPressed: () {
-            Navigator.pop(context);
-          },
+      appBar: GradientAppBar(
+        backgroundColorStart: Colors.indigoAccent,
+        backgroundColorEnd: Colors.indigo,
+        title: Text(
+          'LOGIN',
+          style: TextStyle(fontSize: 25.0),
         ),
-        bottom: PreferredSize(
-          child: Container(
-            padding: EdgeInsets.only(left: 16.0, bottom: 16, top: 4),
-            color: Colors.white,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      "Verify Details",
-                      style: TextStyle(
-                          fontSize: 22.0, fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(
-                      height: 8,
-                    ),
-                    Text(
-                      "OTP sent to ${widget.mobileNumber}",
-                      style: TextStyle(
-                          fontSize: 16.0, fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-          preferredSize: Size.fromHeight(100),
-        ),
+        elevation: 27.0,
       ),
-      body: SingleChildScrollView(
+      body: Container(
+        padding: EdgeInsets.all(25.0),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: PinInputTextField(
-                pinLength: 6,
-                decoration: _pinDecoration,
-                controller: _pinEditingController,
-                autoFocus: true,
-                textInputAction: TextInputAction.done,
-                onSubmit: (pin) {
-                  if (pin.length == 6) {
-                    _onFormSubmitted();
-                  } else {
-                    showToast("Invalid OTP", Colors.red);
-                  }
+            Center(
+              child: TextField(
+                decoration: InputDecoration(
+                    hintText: 'Enter your Phone Number',
+                    hintStyle: TextStyle(
+                      fontSize: 20.0,
+                    ),
+                    prefixText: '+92 ',
+                    prefixStyle: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20.0,
+                    )),
+                onChanged: (value) {
+                  this.phoneNo = value;
                 },
               ),
             ),
-            Container(
-              padding: EdgeInsets.all(16),
-              child: Center(
-                child: SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.8,
-                  child: RaisedButton(
-                    color: Theme.of(context).primaryColor,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(0.0)),
-                    child: Text(
-                      "ENTER OTP",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    onPressed: () {
-                      if (_pinEditingController.text.length == 6) {
-                        _onFormSubmitted();
-                      } else {
-                        showToast("Invalid OTP", Colors.red);
-                      }
-                    },
-                    padding: EdgeInsets.all(16.0),
-                  ),
-                ),
-              ),
+            SizedBox(
+              height: 19,
             ),
+            RaisedButton(
+              onPressed: verifyPhone,
+              child: Text(
+                'Verify',
+              ),
+              textColor: Colors.white,
+              elevation: 2.0,
+              color: Colors.black,
+            )
           ],
         ),
       ),
+      // ),
     );
   }
-
-  void showToast(message, Color color) {
-    print(message);
-    Fluttertoast.showToast(
-        msg: message,
-        toastLength: Toast.LENGTH_LONG,
-        gravity: ToastGravity.CENTER,
-        timeInSecForIosWeb: 2,
-        backgroundColor: color,
-        textColor: Colors.white,
-        fontSize: 16.0);
-  }
-
-  void _onVerifyCode() async {
-    setState(() {
-      isCodeSent = true;
-    });
-    final PhoneVerificationCompleted verificationCompleted =
-        (AuthCredential phoneAuthCredential) {
-      _firebaseAuth
-          .signInWithCredential(phoneAuthCredential)
-          .then((AuthResult value) {
-        if (value.user != null) {
-          // Handle loogged in state
-          print(value.user.phoneNumber);
-          Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(
-                builder: (context) => HomePage(
-                  //user: value.user,
-                ),
-              ),
-                  (Route<dynamic> route) => false);
-        } else {
-          showToast("Error validating OTP, try again", Colors.red);
-        }
-      }).catchError((error) {
-        showToast("Try again in sometime", Colors.red);
-      });
-    };
-    final PhoneVerificationFailed verificationFailed =
-        (AuthException authException) {
-      showToast(authException.message, Colors.red);
-      setState(() {
-        isCodeSent = false;
-      });
-    };
-
-    final PhoneCodeSent codeSent =
-        (String verificationId, [int forceResendingToken]) async {
-      _verificationId = verificationId;
-      setState(() {
-        _verificationId = verificationId;
-      });
-    };
-    final PhoneCodeAutoRetrievalTimeout codeAutoRetrievalTimeout =
-        (String verificationId) {
-      _verificationId = verificationId;
-      setState(() {
-        _verificationId = verificationId;
-      });
-    };
-
-    // TODO: Change country code
-
-    await _firebaseAuth.verifyPhoneNumber(
-      //  phoneNumber: "+92${widget.mobileNumber}",
-        timeout: const Duration(seconds: 60),
-        verificationCompleted: verificationCompleted,
-        verificationFailed: verificationFailed,
-        codeSent: codeSent,
-        codeAutoRetrievalTimeout: codeAutoRetrievalTimeout);
-  }
-
-  void _onFormSubmitted() async {
-    AuthCredential _authCredential = PhoneAuthProvider.getCredential(
-        verificationId: _verificationId, smsCode: _pinEditingController.text);
-
-    _firebaseAuth
-        .signInWithCredential(_authCredential)
-        .then((AuthResult value) {
-      if (value.user != null) {
-        // Handle loogged in state
-        print(value.user.phoneNumber);
-        Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(
-              builder: (context) => HomePage(
-               // user: value.user,
-              ),
-            ),
-                (Route<dynamic> route) => false);
-      } else {
-        showToast("Error validating OTP, try again", Colors.red);
-      }
-    }).catchError((error) {
-      showToast("Something went wrong", Colors.red);
-    });
-  }
-}*/
+}

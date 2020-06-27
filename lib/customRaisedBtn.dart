@@ -7,7 +7,7 @@ class customRaisedBtn extends StatelessWidget {
   final VoidCallback onPressed;
   final SizedBox width;
   final SizedBox height;
-  customRaisedBtn({@required this.color, this.borderRadius, this.child, this.onPressed, this.width, this.height}) : assert(color != null);
+  customRaisedBtn({@required this.color, this.borderRadius, this.child, this.onPressed, this.width, this.height}) ;
 
   @override
   Widget build(BuildContext context) {

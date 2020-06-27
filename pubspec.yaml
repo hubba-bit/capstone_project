@@ -14,7 +14,7 @@ description: A new Flutter application.
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.2.0 <3.0.0"
+  sdk: ">=2.2.2 <3.0.0"
 
 dependencies:
   firebase_auth: ^0.16.0
@@ -26,6 +26,8 @@ dependencies:
   firebase_storage: ^3.0.3
   image_picker: ^0.6.7+1
   fluttertoast: ^4.0.1
+  gradient_app_bar: ^0.0.1
+
 
 
   flutter:

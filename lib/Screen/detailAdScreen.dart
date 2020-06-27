@@ -1,3 +1,4 @@
+import 'package:bechdoapp/Screen/platformAlertDialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -40,17 +41,20 @@ class _DetailAdPageState extends State<DetailAdPage> {
                   height: 250.0,
                   color: Colors.grey[100],
                   child: Column(
+                    //Row(
                     children: <Widget>[
-                      Row(
-                        children: <Widget>[
-                          if (widget.posts["imageUrl"] != null)
-                            Image.network(
-                              widget.posts["imageUrl"],
-                              fit: BoxFit.fitWidth,
-                            )
-                        ],
-                      )
+                      widget.posts['imageUrl'] != null
+                          ? Image.network(widget.posts['imageUrl'])
+                          : Image.asset('images/camera2.png', height: 150.0,),
+                       // if (widget.posts["imageUrl"] != null)
+                      // Image.network(
+                      // widget.posts["imageUrl"],
+
+                      //   fit:BoxFit.fill,
+                      //)
                     ],
+                    //)
+                    // ],
                   ),
                 ),
               ),
@@ -95,6 +99,7 @@ class _DetailAdPageState extends State<DetailAdPage> {
                                 style: TextStyle(
                                   fontSize: 28.0,
                                   fontWeight: FontWeight.w600,
+                                  color: Colors.white,
                                 ),
                               ),
                               SizedBox(
@@ -104,58 +109,78 @@ class _DetailAdPageState extends State<DetailAdPage> {
                                 '\Rs  ${widget.posts.data["price"]}',
                                 style: TextStyle(
                                     fontSize: 20.0,
+                                    color: Colors.white,
                                     fontStyle: FontStyle.italic),
                               ),
                             ])),
                   ],
                 ),
               ),
-              Container(
-                width: 500.0,
-                height: 150.0,
-                color: Colors.white30,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Padding(
-                      padding: EdgeInsets.only(left: 8.0, top: 6.0),
-                      child: Text(
-                        'Description:',
-                        style: TextStyle(
-                          fontSize: 24.0,
-                          fontStyle: FontStyle.italic,
-                          fontWeight: FontWeight.w600,
+              Scrollbar(
+                isAlwaysShown: true,
+                child: Container(
+                  width: 500.0,
+                  height: 150.0,
+                  color: Colors.white30,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Padding(
+                        padding: EdgeInsets.only(left: 8.0, top: 6.0),
+                        child: Text(
+                          'Description:',
+                          style: TextStyle(
+                            fontSize: 24.0,
+                            fontStyle: FontStyle.italic,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(left: 15.0, top: 5.0),
-                      child: Text(
-                        widget.posts.data["subtitle"],
-                        style: TextStyle(
-                          fontSize: 17.0,
-
+                      Padding(
+                        padding: EdgeInsets.only(left: 15.0, top: 5.0),
+                        child: Text(
+                          widget.posts.data["subtitle"],
+                          style: TextStyle(
+                            fontSize: 17.0,
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
               SizedBox(
                 height: 122.0,
               ),
               Container(
-                height: 120.0,
-                width: 600.0,
-                 decoration: BoxDecoration(
+                height: 70.0,
+                width: 200.0,
+                decoration: BoxDecoration(
                   color: Colors.indigo,
-                  borderRadius: BorderRadius.circular(20.0),
+                  borderRadius: BorderRadius.circular(0.0),
                 ),
-
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
-                    SizedBox(
+                    FlatButton(
+                      child: Text(
+
+                        'Contact Seller',
+
+                        style: TextStyle(
+
+                          fontSize: 23.0,
+
+                          color: Colors.white,
+
+                          fontWeight: FontWeight.w500,
+
+                        ),
+
+                      ),
+                      onPressed: () => _callAlertDialog(context),
+                    ),
+                    /* SizedBox(
                       width: 100.0,
                       height: 150.0,
                       child: FlatButton(
@@ -241,7 +266,7 @@ class _DetailAdPageState extends State<DetailAdPage> {
                           ],
                         ),
                       ),
-                    ),
+                    ),*/
 
                     /* SizedBox(
                       width:100.0,
@@ -275,5 +300,18 @@ class _DetailAdPageState extends State<DetailAdPage> {
         ),
       ),
     );
+  }
+
+  Future<void> _callAlertDialog(BuildContext context) async {
+    final didRequestSignOut = await PlatformAlertDialog(
+      title: 'Contact Seller',
+      content: (widget.posts.data["Mobile"].toString()),
+
+     defaultActionText: '',
+      cancelActionText: '',
+    ).show(context);
+    /* if(didRequestSignOut)
+      _callAlertDialog(context);
+*/
   }
 }
