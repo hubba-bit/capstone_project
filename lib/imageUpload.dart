@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart'; // For File Upload To Firestore
 import 'package:flutter/material.dart';
+import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:image_picker/image_picker.dart'; // For Image Picker
 import 'package:path/path.dart' as Path;
 
@@ -53,9 +54,10 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: GradientAppBar(
+        backgroundColorStart: Colors.indigoAccent,
+        backgroundColorEnd: Colors.indigo,
         title: Text('Upload Your Photos'),
-        backgroundColor: Colors.indigo,
         elevation: 17.0,
         /*actions: <Widget>[
           FlatButton(

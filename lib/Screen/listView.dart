@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:bechdoapp/menuButton.dart';
+import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'detailAdScreen.dart';
 
 class ListScreen extends StatefulWidget {
@@ -76,10 +77,10 @@ class _ListScreenState extends State<ListScreen> {
           elevation: 5.0,
           splashColor: Colors.blueGrey,
         ),
-        appBar: AppBar(
-          backgroundColor: Colors.indigo,
-       //   title: Text('Jobs'),
-          elevation: 17.0,
+        appBar: GradientAppBar(
+          backgroundColorStart: Colors.indigoAccent,
+          backgroundColorEnd: Colors.indigo,
+          elevation: 20.0,
         ),
         body: Column(children: <Widget>[
           Padding(

@@ -73,19 +73,11 @@ class LoginPage extends StatelessWidget {
     }
   }
 
-  /*Future<void> _signInWithPhoneNumber () async {
-    try{
-      await auth.signInWithPhoneNumber();
-
-    }
-    catch(e){
-      print(e.toString());
-    }
-  }*/
-  void _navigateToNextScreen(BuildContext context) {
+  /*// ignore: missing_return
+  Future<void> _navigateToNextScreen(BuildContext context){
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => HomePagge()));
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -292,8 +284,8 @@ class LoginPage extends StatelessWidget {
                   ],
                 ),
                 //color: ,
-                onPressed: () {
-                  Navigator.push(context: context ,
+                onPressed:() {
+                  Navigator.push(context,
                       MaterialPageRoute(builder: (context) => HomePagge()));
                 },
                 borderRadius: 6.0,
