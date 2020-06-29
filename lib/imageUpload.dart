@@ -55,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: GradientAppBar(
-        backgroundColorStart: Colors.indigoAccent,
+        backgroundColorStart: Colors.indigo[400],
         backgroundColorEnd: Colors.indigo,
         title: Text('Upload Your Photos'),
         elevation: 17.0,
@@ -87,10 +87,12 @@ class _MyHomePageState extends State<MyHomePage> {
     final double width = (MediaQuery.of(context).size.width / 1) - 27;
 
     return Container(
+
       margin: EdgeInsets.all(30.0),
       height: height,
       width: width,
       decoration: BoxDecoration(
+
         borderRadius: BorderRadius.all(
             Radius.circular(10.0)), // set rounded corner radius
 
@@ -117,7 +119,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   _image.path,
                   height: 240,
                 )
-              : Container(height: 220),
+              : Container(height: 220, ),
           SizedBox(
             height: 13.0,
           ),
@@ -126,8 +128,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   width: 400.0,
                   height: 40.0,
                   child: RaisedButton(
+                    elevation: 15.0,
                     child: Text(
-                      'Choose File',
+                      'Choose  File',
                       style: TextStyle(
                         fontSize: 19.0,
                         color: Colors.white,

@@ -12,43 +12,63 @@ class MenuButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return customRaisedBtn(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          FlatButton(
-            onPressed: () => {},
-            color: Colors.blue,
-            padding: EdgeInsets.all(10.0),
-            shape: CircleBorder(),
-            child: Column(
-              // Rep
-              // lace with a Row for horizontal icon + text
-              children: <Widget>[
-                Icon(
-                  icon,
-                  size: 33.0,
-                ),
-              ],
-            ),
-          ),
-          SizedBox(
-            height: 10.0,
-          ),
-          Text(text,
-            style: TextStyle(
-              fontStyle: FontStyle.normal,
-              fontSize: 20.0,
-            ),
+    return Container(
+
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(17),
+            topRight: Radius.circular(17),
+            bottomLeft: Radius.circular(17),
+            bottomRight: Radius.circular(17)
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.8),
+            spreadRadius: 5,
+            blurRadius: 6,
+            offset: Offset(0, 3), // changes position of shadow
           ),
         ],
       ),
-      color: Colors.white,
-      onPressed: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => ListScreen()));
-      },
-      borderRadius: 20.0,
+      child: customRaisedBtn(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            FlatButton(
+              onPressed: () => {},
+              color: Colors.blue,
+              padding: EdgeInsets.all(10.0),
+              shape: CircleBorder(),
+              child: Column(
+                // Rep
+                // lace with a Row for horizontal icon + text
+                children: <Widget>[
+                  Icon(
+                    icon,
+                    size: 33.0,
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 10.0,
+            ),
+            Text(text,
+              style: TextStyle(
+                fontStyle: FontStyle.normal,
+                fontSize: 20.0,
+              ),
+            ),
+          ],
+        ),
+        color: Colors.white,
+        onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => ListScreen()));
+        },
+        borderRadius: 20.0,
+      ),
     );
   }
 }

@@ -78,7 +78,7 @@ class _ListScreenState extends State<ListScreen> {
           splashColor: Colors.blueGrey,
         ),
         appBar: GradientAppBar(
-          backgroundColorStart: Colors.indigoAccent,
+          backgroundColorStart: Colors.indigo[400],
           backgroundColorEnd: Colors.indigo,
           elevation: 20.0,
         ),

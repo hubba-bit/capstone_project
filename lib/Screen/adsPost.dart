@@ -1,12 +1,8 @@
-import 'package:bechdoapp/Screen/listView.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:bechdoapp/imageUpload.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
-import 'home_page.dart';
-import 'package:bechdoapp/menuButton.dart';
 // ignore: non_constant_identifier_names
 Future<String> _adPost(
     String Title, String Description, String Price, String Mobile) async {
@@ -27,19 +23,18 @@ class AdsPost extends StatelessWidget {
   final c = TextEditingController();
   final d = TextEditingController();
 
-//  final e = TextEditingController();
-
-  // ignore: missing_return
 
   /*void dispose() {
     // Clean up the controller when the widget is disposed.
     myController.dispose();
   }*/
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: GradientAppBar(
-        backgroundColorStart: Colors.indigoAccent,
+        backgroundColorStart: Colors.indigo[400],
         backgroundColorEnd: Colors.indigo,
        // title: TextEditingController(Text:text),
         elevation: 17.0,
@@ -80,10 +75,17 @@ class AdsPost extends StatelessWidget {
         .width / 1) - 27;
 
     return Container(
+
       margin: EdgeInsets.all(30.0),
       height: height,
       width: width,
       decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Colors.grey[200],Colors.white30,Colors.grey[300]],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+
+          ),
         borderRadius: BorderRadius.all(
             Radius.circular(10.0)), // set rounded corner radius
 
@@ -103,14 +105,13 @@ class AdsPost extends StatelessWidget {
         SizedBox(
           height: 40.0,
         ),
-        TextFormField(  maxLength: 20,
+        TextFormField(  maxLength: 34,
 
-          textInputAction: TextInputAction.continueAction,
           controller: a,
           decoration: new InputDecoration(
             border: new OutlineInputBorder(
                 borderSide: new BorderSide(color: Colors.teal)),
-            helperText: 'Enter Your Ad Title  Here',
+            helperText: 'Enter Your Ad Title  Here', helperStyle: TextStyle(color: Colors.black,),
             labelText: 'Title',
           ),
         ),
@@ -126,7 +127,7 @@ class AdsPost extends StatelessWidget {
                 borderSide: new BorderSide(color: Colors.teal)),
             // hintText: 'Tell us about yourself',
 
-            helperText: 'Enter Your Ad Description  Here',
+            helperText: 'Enter Your Ad Description  Here', helperStyle: TextStyle(color: Colors.black,),
             labelText: 'Description',
             isDense: true,
             // Added this
@@ -141,7 +142,7 @@ class AdsPost extends StatelessWidget {
           decoration: new InputDecoration(
             border: new OutlineInputBorder(
                 borderSide: new BorderSide(color: Colors.teal)),
-            helperText: 'Enter Your Ad Price  Here',
+            helperText: 'Enter Your Ad Price  Here', helperStyle: TextStyle(color: Colors.black,),
             labelText: 'Price',
 prefixText: 'RS :',
           ),
@@ -157,13 +158,12 @@ prefixText: 'RS :',
               border: OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.teal),
               ),
-              helperText: 'Enter Your Phone Number',
+              helperText: 'Enter Your Phone Number', helperStyle: TextStyle(color: Colors.black,),
               labelText: 'Mobile No',
-          prefixText: '+92'),
+            prefixText:'+92',
+         ),
           keyboardType: TextInputType.number,           //^(?:[+0]9)?[0-9]{10}$);
 
-// initialValue: "5",
-//      onSaved: (input) => _value = num.tryParse(input),
 
         ),
       ]),

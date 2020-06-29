@@ -26,7 +26,7 @@ class PlatformAlertDialog extends PlatformWidget {
         builder: (context) => this,)
         : await showDialog<bool>(
             context: context,
-            barrierDismissible: false,
+           // barrierDismissible: false,
             builder: (context) => this);
   }
 
@@ -35,7 +35,7 @@ class PlatformAlertDialog extends PlatformWidget {
     return CupertinoAlertDialog(
       title: Text(title),
       content: Text(content),
-      actions: _buildActions(context),
+      actions: buildActions(context),
     );
   }
 
@@ -51,11 +51,11 @@ class PlatformAlertDialog extends PlatformWidget {
       content: Text(content, style: TextStyle(
         fontSize: 21.0,
       ),),
-      actions: _buildActions(context),
+      actions: buildActions(context),
     );
   }
 
-  List<Widget> _buildActions(BuildContext context) {
+  List<Widget> buildActions(BuildContext context) {
     final actions = <Widget>[];
     if (cancelActionText != null) {
       actions.add(PlatformAlertDialogAction(

@@ -15,14 +15,15 @@ class HomePage extends StatelessWidget {
     @required this.auth,
     this.context,
   });
-  Future<void> _signOut( BuildContext context) async {
+  Future<void> _signOut(BuildContext context) async {
     try {
       auth.signOut();
     } catch (e) {
       print(e.toString());
     }
   }
-Future<void> _confirmSignOut(BuildContext context) async{
+
+/*Future<void> _confirmSignOut(BuildContext context) async{
     final didRequestSignOut = await PlatformAlertDialog(
       title: 'Logout',
       content: 'Are You Sure You want to log out',
@@ -31,12 +32,41 @@ Future<void> _confirmSignOut(BuildContext context) async{
     ).show(context);
     if(didRequestSignOut)
       _signOut(context);
-    
-}
+
+}*/
+  Future<bool> deleteDialog(BuildContext context) {
+    return showDialog(
+        context: context,
+         builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Are you sure you want to Log out'),
+            actions: <Widget>[
+              FlatButton(
+                child: Text('Yes'),
+                onPressed: () {
+
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => LoginPage(
+                            auth: auth,
+                              )));
+                },
+              ),
+              FlatButton(
+                child: Text('No'),
+                onPressed: () {
+                  Navigator.of(context).pop(false);
+                },
+              )
+            ],
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       /*floatingActionButton: Container(
         height: 65.0,
         width: 65.0,
@@ -53,18 +83,18 @@ Future<void> _confirmSignOut(BuildContext context) async{
       ),
      */
       appBar: GradientAppBar(
-        backgroundColorStart: Colors.indigoAccent,
+        backgroundColorStart: Colors.indigo[400],
         backgroundColorEnd: Colors.indigo,
-        elevation: 10.0,
+        elevation: 30.0,
         /* leading: IconButton(
           onPressed: (){},
           icon: Icon(Icons.menu),
         ),
 */
         title: Text(
-          'Categories',
+          'CATEGORIES',
           style: TextStyle(
-            fontSize: 22.0,
+            fontSize: 23.0,
             color: Colors.white,
           ),
         ),
@@ -76,11 +106,13 @@ Future<void> _confirmSignOut(BuildContext context) async{
             child: Text(
               'Logout',
               style: TextStyle(
-                fontSize: 16.0,
+                fontSize: 18.0,
                 color: Colors.white,
               ),
             ),
-            onPressed: () => _confirmSignOut(context),
+            onPressed: () {
+              deleteDialog(context);
+            },
           )
         ],
       ),
@@ -94,7 +126,17 @@ Future<void> _confirmSignOut(BuildContext context) async{
     final double width = (MediaQuery.of(context).size.width / 2) - 28;
 
     return Container(
-      padding: EdgeInsets.all(18),
+          width: double.infinity,
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [Colors.grey[400],Colors.white30,Colors.grey[600]],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+
+              )
+          ),
+
+      padding: EdgeInsets.all(19),
       child: ListView(
         children: <Widget>[
           Row(
@@ -178,6 +220,6 @@ Future<void> _confirmSignOut(BuildContext context) async{
   }
 }
 
-Future navigateToSubPage(context) async {
+/*Future navigateToSubPage(context) async {
   Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
-}
+}*/

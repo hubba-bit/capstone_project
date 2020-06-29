@@ -1,10 +1,11 @@
+
 import 'package:bechdoapp/Auth.dart';
-import 'package:bechdoapp/Screen/otpScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import '../customRaisedBtn.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
+
 
 class LoginPage extends StatelessWidget {
   /*String phoneNo;
@@ -46,6 +47,7 @@ class LoginPage extends StatelessWidget {
       );
     });
   }*/
+
   LoginPage({@required this.auth});
   final AuthBase auth;
 
@@ -73,12 +75,22 @@ class LoginPage extends StatelessWidget {
     }
   }
 
-  /*// ignore: missing_return
-  Future<void> _navigateToNextScreen(BuildContext context){
+  // ignore: missing_return
+ /*void _navigateToNextScreen(BuildContext context){
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => HomePagge()));
   }*/
+  /*String _phoneNumberValidator(String value) {
 
+    Pattern pattern =
+        r'/^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/';
+    RegExp regex = new RegExp(pattern);
+    if (!regex.hasMatch(value))
+      return 'Enter Valid Phone Number';
+    else
+      return null;
+    
+  }*/
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -284,9 +296,9 @@ class LoginPage extends StatelessWidget {
                   ],
                 ),
                 //color: ,
-                onPressed:() {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => HomePagge()));
+                onPressed: () {
+                  /*Navigator.push(context : context,
+                      MaterialPageRoute(builder: (context) => HomePagge()));*/
                 },
                 borderRadius: 6.0,
               ),

@@ -23,13 +23,7 @@ class _DetailAdPageState extends State<DetailAdPage> {
         backgroundColor: Colors.white10,
         elevation: 150.0,
       ),
-      /* child: Card(
-        child: ListTile(
-          title: Text(widget.posts.data["title"]),
-          subtitle:  Text(widget.posts.data["subtitle"]),
-        ),
-      ),
-    );*/
+
 
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.light,
@@ -39,13 +33,15 @@ class _DetailAdPageState extends State<DetailAdPage> {
               Center(
                 child: Container(
                   height: 250.0,
-                  color: Colors.grey[100],
+                  color: Colors.white,
                   child: Column(
                     //Row(
                     children: <Widget>[
                       widget.posts['imageUrl'] != null
-                          ? Image.network(widget.posts['imageUrl'])
-                          : Image.asset('images/camera2.png', height: 150.0,),
+                          ? Image.network(widget.posts['imageUrl'], width: 500,
+                          height: 250,
+                          fit:BoxFit.fill )
+                          :  /*Icon (Icons.camera_alt),*/Center(child: Image.asset('images/camera1.png',  height: 150.0, )),
                        // if (widget.posts["imageUrl"] != null)
                       // Image.network(
                       // widget.posts["imageUrl"],
@@ -180,118 +176,7 @@ class _DetailAdPageState extends State<DetailAdPage> {
                       ),
                       onPressed: () => _callAlertDialog(context),
                     ),
-                    /* SizedBox(
-                      width: 100.0,
-                      height: 150.0,
-                      child: FlatButton(
-                        onPressed: () {},
-                        color: Colors.white,
-                        padding: EdgeInsets.all(7.0),
-                        child: Column(
-                          children: <Widget>[
-                            Text(
-                              "CHAT",
-                              style: TextStyle(
-                                fontSize: 16.0,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.indigo,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 3.0,
-                            ),
-                            Icon(
-                              Icons.chat,
-                              size: 30.0,
-                              color: Colors.indigo,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 100.0,
-                      height: 150.0,
-                      child: FlatButton(
-                        onPressed: () {},
-                        color: Colors.white,
-                        padding: EdgeInsets.all(7.0),
-                        child: Column(
-                          children: <Widget>[
-                            Text(
-                              "CALL",
-                              style: TextStyle(
-                                fontSize: 16.0,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.indigo,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 4.0,
-                            ),
-                            Icon(
-                              Icons.call,
-                              size: 30.0,
-                              color: Colors.indigo,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 100.0,
-                      height: 150.0,
-                      child: FlatButton(
-                        onPressed: () {},
-                        color: Colors.white,
-                        padding: EdgeInsets.all(7.0),
-                        child: Column(
-                          children: <Widget>[
-                            Text(
-                              "SMS",
-                              style: TextStyle(
-                                fontSize: 16.0,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.indigo,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 3.0,
-                            ),
-                            Icon(
-                              Icons.message,
-                              size: 30.0,
-                              color: Colors.indigo,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),*/
 
-                    /* SizedBox(
-                      width:100.0,
-                      height: 120.0,
-                      child: RaisedButton(
-
-                        color: Colors.black,
-
-                      ),
-
-                    ),
-                    SizedBox(
-                      width:100.0,
-                      height: 120.0,
-                      child: RaisedButton(
-                        color: Colors.white,
-                      ),
-                    ),
-                    SizedBox(
-                      width:100.0,
-                      height: 120.0,
-                      child: RaisedButton(
-                        color: Colors.white,
-                      ),
-                    )*/
                   ],
                 ),
               ),
@@ -301,17 +186,46 @@ class _DetailAdPageState extends State<DetailAdPage> {
       ),
     );
   }
+  /*Future<bool> deleteDialog(BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Contact Seller' , style: TextStyle(fontSize: 30.0,),),
+           content: (widget.posts.data["Mobile"]).toString()),
+           *//* actions: <Widget>[
+              FlatButton(
+                child: Text('Yes'),
+                onPressed: () {
+
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => LoginPage(
+                            auth: auth,
+                          )));
+                },
+              ),
+              FlatButton(
+                child: Text('No'),
+                onPressed: () {
+                  Navigator.of(context).pop(false);
+                },
+              )
+            ],*//*
+          );
+        });
+  }*/
 
   Future<void> _callAlertDialog(BuildContext context) async {
     final didRequestSignOut = await PlatformAlertDialog(
       title: 'Contact Seller',
       content: (widget.posts.data["Mobile"].toString()),
 
-     defaultActionText: '',
+      defaultActionText: '',
       cancelActionText: '',
     ).show(context);
-    /* if(didRequestSignOut)
+    if (didRequestSignOut)
       _callAlertDialog(context);
-*/
   }
 }
