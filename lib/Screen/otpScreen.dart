@@ -2,15 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 
-class HomePagge extends StatefulWidget {
+class OtpScreen extends StatefulWidget {
   @override
-  _HomePaggeState createState() => _HomePaggeState();
+  _OtpScreenState createState() => _OtpScreenState();
 }
 
-class _HomePaggeState extends State<HomePagge> {
+class _OtpScreenState extends State<OtpScreen> {
   String phoneNo;
   String smsCode;
   String verificationId;
+
+
+
+
 
   Future<void> verifyPhone() async {
     final PhoneCodeAutoRetrievalTimeout autoRetrieve = (String verId) {
@@ -37,7 +41,7 @@ class _HomePaggeState extends State<HomePagge> {
       phoneNumber: this.phoneNo,
       codeAutoRetrievalTimeout: autoRetrieve,
       codeSent: smsCodeSent,
-      timeout: const Duration(seconds: 8),
+      timeout: const Duration(seconds: 10),
       verificationCompleted: verifiedSuccess,
       verificationFailed: verifiFailed,
     );
@@ -62,18 +66,28 @@ class _HomePaggeState extends State<HomePagge> {
                   'Done',
                 ),
                 onPressed: () {
-                  FirebaseAuth.instance.currentUser().then((user) {
+                   FirebaseAuth.instance.currentUser().then((user) {
                     if (user != null) {
                       Navigator.of(context).pop();
+
                       Navigator.of(context).pushReplacement(
                           MaterialPageRoute(builder: (BuildContext context) {
-                        return HomePagge();
-                      }));
+                        return HomePage();
+
+                      }
+
+                      )
+                      );
+                      /*Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => HomePage()));*/
                     } else {
                       Navigator.of(context).pop();
                       signIn();
                     }
                   });
+
+                /*  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => OtpScreen()));*/
                 },
               )
             ],
@@ -92,8 +106,9 @@ class _HomePaggeState extends State<HomePagge> {
         await _auth.signInWithCredential(credential).then((user) {
       Navigator.of(context)
           .pushReplacement(MaterialPageRoute(builder: (BuildContext context) {
-        return HomePagge();
+        return OtpScreen();
       }));
+
     }).catchError((e) {
       print(e);
     });
@@ -119,15 +134,16 @@ class _HomePaggeState extends State<HomePagge> {
             Center(
               child: TextField(
                 decoration: InputDecoration(
-                    hintText: 'Enter your Phone Number',
-                    hintStyle: TextStyle(
-                      fontSize: 20.0,
-                    ),
-                    prefixText: '+92 ',
+                  hintText: 'Enter your Phone Number',
+                  hintStyle: TextStyle(
+                    fontSize: 20.0,
+                  ),
+                  /* prefixText: '+92 ',
                     prefixStyle: TextStyle(
                       color: Colors.black,
                       fontSize: 20.0,
-                    )),
+                    )*/
+                ),
                 onChanged: (value) {
                   this.phoneNo = value;
                 },

@@ -23,17 +23,7 @@ class HomePage extends StatelessWidget {
     }
   }
 
-/*Future<void> _confirmSignOut(BuildContext context) async{
-    final didRequestSignOut = await PlatformAlertDialog(
-      title: 'Logout',
-      content: 'Are You Sure You want to log out',
-      defaultActionText: 'Logout',
-      cancelActionText: 'No',
-    ).show(context);
-    if(didRequestSignOut)
-      _signOut(context);
 
-}*/
   Future<bool> deleteDialog(BuildContext context) {
     return showDialog(
         context: context,

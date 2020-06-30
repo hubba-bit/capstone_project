@@ -26,8 +26,8 @@ class MyApp extends StatelessWidget {
         backgroundColor: Colors.black54,
 
       ),
-      home:ListScreen(
-     // auth: Auth(),
+      home:LandingPage(
+      auth: Auth(),
 
       ),
     );
