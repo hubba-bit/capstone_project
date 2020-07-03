@@ -1,6 +1,9 @@
+import 'package:bechdoapp/Screen/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
+
+import '../Auth.dart';
 
 class OtpScreen extends StatefulWidget {
   @override
@@ -11,10 +14,6 @@ class _OtpScreenState extends State<OtpScreen> {
   String phoneNo;
   String smsCode;
   String verificationId;
-
-
-
-
 
   Future<void> verifyPhone() async {
     final PhoneCodeAutoRetrievalTimeout autoRetrieve = (String verId) {
@@ -66,27 +65,24 @@ class _OtpScreenState extends State<OtpScreen> {
                   'Done',
                 ),
                 onPressed: () {
-                   FirebaseAuth.instance.currentUser().then((user) {
-                    if (user != null) {
+                  FirebaseAuth.instance.currentUser().then((user) {
+                    if (user!= null) {
                       Navigator.of(context).pop();
-
                       Navigator.of(context).pushReplacement(
                           MaterialPageRoute(builder: (BuildContext context) {
                         return HomePage();
-
-                      }
-
-                      )
-                      );
+                      }));
                       /*Navigator.push(context,
                           MaterialPageRoute(builder: (context) => HomePage()));*/
                     } else {
                       Navigator.of(context).pop();
                       signIn();
+                    /*  Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => OtpScreen()));*/
                     }
                   });
 
-                /*  Navigator.push(context,
+                  /*  Navigator.push(context,
                       MaterialPageRoute(builder: (context) => OtpScreen()));*/
                 },
               )
@@ -108,7 +104,6 @@ class _OtpScreenState extends State<OtpScreen> {
           .pushReplacement(MaterialPageRoute(builder: (BuildContext context) {
         return OtpScreen();
       }));
-
     }).catchError((e) {
       print(e);
     });

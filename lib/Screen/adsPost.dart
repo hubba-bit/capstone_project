@@ -5,13 +5,13 @@ import 'package:bechdoapp/imageUpload.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 // ignore: non_constant_identifier_names
 Future<String> _adPost(
-    String Title, String Description, String Price, String Mobile) async {
+    String Title, String Description, String Price, String mobile) async {
   final docRef = Firestore.instance.collection('posts').document();
   await docRef.setData({
     'title': Title,
     'subtitle': Description,
     'price': Price,
-    'mobile': Mobile,
+    'mobile': mobile,
   });
   return docRef.documentID;
 }
@@ -149,9 +149,9 @@ prefixText: 'RS :',
           keyboardType: TextInputType.number,
         ),
 
-        SizedBox(
+       /* SizedBox(
           height: 28.0,
-        ),
+        ),*/
         TextFormField(
           controller: d,
           decoration: const InputDecoration(

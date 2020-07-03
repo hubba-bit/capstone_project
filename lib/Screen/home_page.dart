@@ -57,21 +57,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      /*floatingActionButton: Container(
-        height: 65.0,
-        width: 65.0,
-        child: FloatingActionButton(
-          child: Icon(Icons.add),
-          onPressed: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => AdsPost()));
-          },
-          elevation: 5.0,
-          splashColor: Colors.grey,
-        ),
 
-      ),
-     */
       appBar: GradientAppBar(
         backgroundColorStart: Colors.indigo[400],
         backgroundColorEnd: Colors.indigo,

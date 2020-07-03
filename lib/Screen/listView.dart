@@ -8,6 +8,7 @@ import 'package:flutter/widgets.dart';
 import 'package:bechdoapp/menuButton.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'detailAdScreen.dart';
+import 'package:intl/intl.dart';
 
 class ListScreen extends StatefulWidget {
 
@@ -28,6 +29,7 @@ class _ListScreenState extends State<ListScreen> {
     Icons.business_center,
     Icons.laptop_chromebook,
   ];
+
 
   Widget _buildIcon(int index) {
     return Container(
@@ -53,7 +55,12 @@ class _ListScreenState extends State<ListScreen> {
                   posts: posts,
                 )));
   }
-
+  main() {
+    var now = new DateTime.now();
+    var formatter = new DateFormat('yyyy-MM-dd');
+    String formattedDate = formatter.format(now);
+    print(formattedDate); // 2016-01-25
+  }
   @override
   void initState() {
     super.initState();
@@ -139,7 +146,7 @@ class _ListScreenState extends State<ListScreen> {
                                 color: Colors.grey[200],
                                 child: ListTile(
 
-                                  leading: CircleAvatar(
+                                                                    leading: CircleAvatar(
                                     backgroundImage: imageUrl != null
                                         ? NetworkImage(imageUrl)
                                         : AssetImage('images/camera2.png'),
@@ -175,5 +182,8 @@ class _ListScreenState extends State<ListScreen> {
     var firestore = Firestore.instance;
     QuerySnapshot qn = await firestore.collection("posts").getDocuments();
     return qn.documents;
+
   }
+
+
 }

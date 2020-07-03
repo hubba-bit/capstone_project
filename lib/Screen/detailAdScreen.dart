@@ -220,7 +220,8 @@ class _DetailAdPageState extends State<DetailAdPage> {
   Future<void> _callAlertDialog(BuildContext context) async {
     final didRequestSignOut = await PlatformAlertDialog(
       title: 'Contact Seller',
-      content: (widget.posts.data["Mobile"].toString()),
+
+      content: (widget.posts.data["mobile"]),
 
       defaultActionText: '',
       cancelActionText: '',
