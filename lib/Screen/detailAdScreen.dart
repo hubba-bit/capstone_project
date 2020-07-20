@@ -23,8 +23,6 @@ class _DetailAdPageState extends State<DetailAdPage> {
         backgroundColor: Colors.white10,
         elevation: 150.0,
       ),
-
-
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.light,
         child: SingleChildScrollView(
@@ -38,11 +36,14 @@ class _DetailAdPageState extends State<DetailAdPage> {
                     //Row(
                     children: <Widget>[
                       widget.posts['imageUrl'] != null
-                          ? Image.network(widget.posts['imageUrl'], width: 500,
-                          height: 250,
-                          fit:BoxFit.fill )
-                          :  /*Icon (Icons.camera_alt),*/Center(child: Image.asset('images/camera1.png',  height: 150.0, )),
-                       // if (widget.posts["imageUrl"] != null)
+                          ? Image.network(widget.posts['imageUrl'],
+                              width: 500, height: 250, fit: BoxFit.fill)
+                          : /*Icon (Icons.camera_alt),*/ Center(
+                              child: Image.asset(
+                              'images/camera1.png',
+                              height: 150.0,
+                            )),
+                      // if (widget.posts["imageUrl"] != null)
                       // Image.network(
                       // widget.posts["imageUrl"],
 
@@ -160,23 +161,15 @@ class _DetailAdPageState extends State<DetailAdPage> {
                   children: <Widget>[
                     FlatButton(
                       child: Text(
-
                         'Contact Seller',
-
                         style: TextStyle(
-
                           fontSize: 23.0,
-
                           color: Colors.white,
-
                           fontWeight: FontWeight.w500,
-
                         ),
-
                       ),
                       onPressed: () => _callAlertDialog(context),
                     ),
-
                   ],
                 ),
               ),
@@ -193,7 +186,7 @@ class _DetailAdPageState extends State<DetailAdPage> {
           return AlertDialog(
             title: Text('Contact Seller' , style: TextStyle(fontSize: 30.0,),),
            content: (widget.posts.data["Mobile"]).toString()),
-           *//* actions: <Widget>[
+           */ /* actions: <Widget>[
               FlatButton(
                 child: Text('Yes'),
                 onPressed: () {
@@ -212,7 +205,7 @@ class _DetailAdPageState extends State<DetailAdPage> {
                   Navigator.of(context).pop(false);
                 },
               )
-            ],*//*
+            ],*/ /*
           );
         });
   }*/
@@ -220,13 +213,10 @@ class _DetailAdPageState extends State<DetailAdPage> {
   Future<void> _callAlertDialog(BuildContext context) async {
     final didRequestSignOut = await PlatformAlertDialog(
       title: 'Contact Seller',
-
       content: (widget.posts.data["mobile"]),
-
       defaultActionText: '',
       cancelActionText: '',
     ).show(context);
-    if (didRequestSignOut)
-      _callAlertDialog(context);
+    if (didRequestSignOut == true) _callAlertDialog(context);
   }
 }
