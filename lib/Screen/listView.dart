@@ -11,9 +11,9 @@ import 'detailAdScreen.dart';
 import 'package:intl/intl.dart';
 
 class ListScreen extends StatefulWidget {
-  final String category;
+  String category;
 
-  const ListScreen({this.category});
+  ListScreen({this.category});
 
   @override
   _ListScreenState createState() => _ListScreenState();
@@ -31,7 +31,7 @@ class _ListScreenState extends State<ListScreen> {
     Icons.laptop_chromebook,
   ];
 
-  Widget _buildIcon(int index) {
+  Widget _buildIcon(int index, String category) {
     return Container(
       height: 55.0,
       width: 55.0,
@@ -39,10 +39,17 @@ class _ListScreenState extends State<ListScreen> {
         color: Theme.of(context).splashColor,
         borderRadius: BorderRadius.circular(30.0),
       ),
-      child: Icon(
-        _icons[index],
-        size: 30.0,
-        color: Theme.of(context).accentColor,
+      child: RaisedButton(
+        child: Icon(
+          _icons[index],
+          size: 30.0,
+          color: Theme.of(context).accentColor,
+        ),
+        onPressed: () {
+          setState(() {
+            widget.category = category;
+          });
+        },
       ),
     );
   }
@@ -110,12 +117,12 @@ class _ListScreenState extends State<ListScreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
-              _buildIcon(0),
-              _buildIcon(1),
-              _buildIcon(2),
-              _buildIcon(3),
-              _buildIcon(4),
-              _buildIcon(5),
+              _buildIcon(0, 'Vehicles'),
+              _buildIcon(1, 'Mobiles'),
+              _buildIcon(2, 'Animals'),
+              _buildIcon(3, 'Property'),
+              _buildIcon(4, 'Jobs'),
+              _buildIcon(5, 'Electronics'),
             ],
           ),
 
@@ -185,6 +192,7 @@ class _ListScreenState extends State<ListScreen> {
     QuerySnapshot qn = await firestore
         .collection("posts")
         .where('category', isEqualTo: widget.category)
+        .orderBy('createdAt', descending: true)
         .getDocuments();
     return qn.documents;
   }
