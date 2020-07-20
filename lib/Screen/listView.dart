@@ -11,14 +11,15 @@ import 'detailAdScreen.dart';
 import 'package:intl/intl.dart';
 
 class ListScreen extends StatefulWidget {
+  final String category;
 
+  const ListScreen({this.category});
 
   @override
   _ListScreenState createState() => _ListScreenState();
 }
 
 class _ListScreenState extends State<ListScreen> {
-
   Future _data;
   @override
   List<IconData> _icons = [
@@ -29,7 +30,6 @@ class _ListScreenState extends State<ListScreen> {
     Icons.business_center,
     Icons.laptop_chromebook,
   ];
-
 
   Widget _buildIcon(int index) {
     return Container(
@@ -55,31 +55,35 @@ class _ListScreenState extends State<ListScreen> {
                   posts: posts,
                 )));
   }
+
   main() {
     var now = new DateTime.now();
     var formatter = new DateFormat('yyyy-MM-dd');
     String formattedDate = formatter.format(now);
     print(formattedDate); // 2016-01-25
   }
+
   @override
   void initState() {
     super.initState();
     _data = getPosts();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         floatingActionButton: FloatingActionButton(
-
           child: Icon(
             Icons.add,
             color: Colors.white,
           ),
 
-         // backgroundColor: Colors.indigo,
+          // backgroundColor: Colors.indigo,
           onPressed: () {
             Navigator.push(
-                context, MaterialPageRoute(builder: (context) => AdsPost()));
+                context,
+                MaterialPageRoute(
+                    builder: (context) => AdsPost(widget.category)));
           },
           elevation: 5.0,
           splashColor: Colors.blueGrey,
@@ -93,7 +97,7 @@ class _ListScreenState extends State<ListScreen> {
           Padding(
             padding: EdgeInsets.only(left: 20.0, right: 120.0, top: 16.0),
             child: Text(
-              'What would you like to find?',
+              'List of posts for category ${widget.category}',
               style: TextStyle(
                 fontSize: 30.0,
                 fontWeight: FontWeight.bold,
@@ -126,51 +130,49 @@ class _ListScreenState extends State<ListScreen> {
             child: FutureBuilder(
                 future: getPosts(),
                 // ignore: missing_return
-                builder: ( context, snapshot) {
+                builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return Center(
                       child: Text('Loading...'),
                     );
                   } else {
                     return ListView.builder(
-                         itemCount: snapshot.data.length,
+                        itemCount: snapshot.data.length,
                         // ignore: missing_return
                         itemBuilder: (_, index) {
                           final imageUrl =
                               snapshot.data[index].data["imageUrl"];
                           final title = snapshot.data[index].data["title"];
-                       //   final ImageAssets = Image.asset('images/bechdologo.jpeg');
+                          //   final ImageAssets = Image.asset('images/bechdologo.jpeg');
                           return SizedBox(
-                               height: 67.0,
-                              child: Card(
-                                color: Colors.grey[200],
-                                child: ListTile(
-
-                                                                    leading: CircleAvatar(
-                                    backgroundImage: imageUrl != null
-                                        ? NetworkImage(imageUrl)
-                                        : AssetImage('images/camera2.png'),
-
-                                    radius: 25.0,
-                                  ),
-                                  title: Text(snapshot.data[index].data["title"]),
-                                  onTap: () =>
-                                      navigateToDetail(snapshot.data[index]),
-                                  /* subtitle:
+                            height: 67.0,
+                            child: Card(
+                              color: Colors.grey[200],
+                              child: ListTile(
+                                leading: CircleAvatar(
+                                  backgroundImage: imageUrl != null
+                                      ? NetworkImage(imageUrl)
+                                      : AssetImage('images/camera2.png'),
+                                  radius: 25.0,
+                                ),
+                                title: Text(snapshot.data[index].data["title"]),
+                                onTap: () =>
+                                    navigateToDetail(snapshot.data[index]),
+                                /* subtitle:
                                       Text(snapshot.data[index].data["subtitle"]),*/
-                                  trailing: Column(
-                                    children: <Widget>[
-                                      Padding(
-                                        padding: EdgeInsets.only(top: 10.0),
-                                      ),
-                                      Text('Rs.'),
-                                      Text(snapshot.data[index].data["price"]),
-                                    ],
-                                  ),
+                                trailing: Column(
+                                  children: <Widget>[
+                                    Padding(
+                                      padding: EdgeInsets.only(top: 10.0),
+                                    ),
+                                    Text('Rs.'),
+                                    Text(snapshot.data[index].data["price"]),
+                                  ],
                                 ),
                               ),
-                            );
-                         // );
+                            ),
+                          );
+                          // );
                         });
                   }
                 }),
@@ -180,10 +182,10 @@ class _ListScreenState extends State<ListScreen> {
 
   Future getPosts() async {
     var firestore = Firestore.instance;
-    QuerySnapshot qn = await firestore.collection("posts").getDocuments();
+    QuerySnapshot qn = await firestore
+        .collection("posts")
+        .where('category', isEqualTo: widget.category)
+        .getDocuments();
     return qn.documents;
-
   }
-
-
 }

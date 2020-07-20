@@ -4,24 +4,24 @@ import 'Screen/listView.dart';
 import 'customRaisedBtn.dart';
 import 'package:flutter/widgets.dart';
 
-
 class MenuButton extends StatelessWidget {
-  final String text ;
+  final String text;
   final IconData icon;
-  MenuButton({@required this.text, this.icon,});
+  MenuButton({
+    @required this.text,
+    this.icon,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(17),
             topRight: Radius.circular(17),
             bottomLeft: Radius.circular(17),
-            bottomRight: Radius.circular(17)
-        ),
+            bottomRight: Radius.circular(17)),
         boxShadow: [
           BoxShadow(
             color: Colors.grey.withOpacity(0.8),
@@ -54,7 +54,8 @@ class MenuButton extends StatelessWidget {
             SizedBox(
               height: 10.0,
             ),
-            Text(text,
+            Text(
+              text,
               style: TextStyle(
                 fontStyle: FontStyle.normal,
                 fontSize: 20.0,
@@ -65,11 +66,14 @@ class MenuButton extends StatelessWidget {
         color: Colors.white,
         onPressed: () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => ListScreen()));
+              context,
+              MaterialPageRoute(
+                  builder: (context) => ListScreen(
+                        category: text,
+                      )));
         },
         borderRadius: 20.0,
       ),
     );
   }
 }
-

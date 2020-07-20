@@ -15,7 +15,7 @@ class HomePage extends StatelessWidget {
     @required this.auth,
     this.context,
   });
-  Future<void> _signOut(BuildContext context) async {
+  Future<void> _signOut() async {
     try {
       auth.signOut();
     } catch (e) {
@@ -23,24 +23,18 @@ class HomePage extends StatelessWidget {
     }
   }
 
-
   Future<bool> deleteDialog(BuildContext context) {
     return showDialog(
         context: context,
-         builder: (BuildContext context) {
+        builder: (BuildContext context) {
           return AlertDialog(
             title: Text('Are you sure you want to Log out'),
             actions: <Widget>[
               FlatButton(
                 child: Text('Yes'),
-                onPressed: () {
-
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => LoginPage(
-                            auth: auth,
-                              )));
+                onPressed: () async {
+                  await _signOut();
+                  Navigator.of(context).pop(false);
                 },
               ),
               FlatButton(
@@ -57,7 +51,6 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       appBar: GradientAppBar(
         backgroundColorStart: Colors.indigo[400],
         backgroundColorEnd: Colors.indigo,
@@ -102,16 +95,13 @@ class HomePage extends StatelessWidget {
     final double width = (MediaQuery.of(context).size.width / 2) - 28;
 
     return Container(
-          width: double.infinity,
-          decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [Colors.grey[400],Colors.white30,Colors.grey[600]],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-
-              )
-          ),
-
+      width: double.infinity,
+      decoration: BoxDecoration(
+          gradient: LinearGradient(
+        colors: [Colors.grey[400], Colors.white30, Colors.grey[600]],
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+      )),
       padding: EdgeInsets.all(19),
       child: ListView(
         children: <Widget>[
