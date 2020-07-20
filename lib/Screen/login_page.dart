@@ -1,4 +1,3 @@
-
 import 'package:bechdoapp/Auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +8,6 @@ import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'otpScreen.dart';
 
 class LoginPage extends StatelessWidget {
-
   LoginPage({@required this.auth});
   final AuthBase auth;
 
@@ -36,7 +34,8 @@ class LoginPage extends StatelessWidget {
       print(e.toString());
     }
   }
- /* Future<void> _navigateToNextScreen(){
+
+  /* Future<void> _navigateToNextScreen(){
     Navigator.of(context).push(MaterialPageRoute(builder: (context) => ListScreen()));
 
   }
@@ -53,7 +52,6 @@ class LoginPage extends StatelessWidget {
           icon: Icon(Icons.menu),*/
       ),
       body: _bodyContent(context),
-
       backgroundColor: Colors.white,
     );
   }
@@ -161,7 +159,7 @@ class LoginPage extends StatelessWidget {
               ),
             ),
             SizedBox(height: 10.0),
-           /* SizedBox(
+            /* SizedBox(
               height: 47.0,
               child: customRaisedBtn(
                 child: Row(
@@ -221,7 +219,6 @@ class LoginPage extends StatelessWidget {
 //                  height: 0.1,
 //                ),
                     ),
-
                     SizedBox(
                       width: 40.0,
                       child: Opacity(
@@ -231,17 +228,18 @@ class LoginPage extends StatelessWidget {
                     ),
                   ],
                 ),
-
-    onPressed: () {
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => OtpScreen()));
-    },
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => OtpScreen(
+                                auth: auth,
+                              )));
+                },
                 borderRadius: 6.0,
               ),
             ),
           ]),
     );
   }
-
 }
-

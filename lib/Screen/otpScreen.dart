@@ -1,11 +1,15 @@
 import 'package:bechdoapp/Screen/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/services.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 
 import '../Auth.dart';
 
 class OtpScreen extends StatefulWidget {
+  final AuthBase auth;
+
+  const OtpScreen({this.auth});
   @override
   _OtpScreenState createState() => _OtpScreenState();
 }
@@ -14,6 +18,7 @@ class _OtpScreenState extends State<OtpScreen> {
   String phoneNo;
   String smsCode;
   String verificationId;
+  TextEditingController errorMsg = TextEditingController();
 
   Future<void> verifyPhone() async {
     final PhoneCodeAutoRetrievalTimeout autoRetrieve = (String verId) {
@@ -53,10 +58,21 @@ class _OtpScreenState extends State<OtpScreen> {
         builder: (BuildContext context) {
           return AlertDialog(
             title: Text('Enter the SMS Code Below'),
-            content: TextField(
-              onChanged: (value) {
-                this.smsCode = value;
-              },
+            content: SizedBox(
+              height: 100,
+              child: Column(
+                children: <Widget>[
+                  TextField(
+                    onChanged: (value) {
+                      this.smsCode = value;
+                    },
+                  ),
+                  // TextField(
+                  //   controller: errorMsg,
+                  //   readOnly: true,
+                  // )
+                ],
+              ),
             ),
             contentPadding: EdgeInsets.all(10.0),
             actions: <Widget>[
@@ -65,22 +81,26 @@ class _OtpScreenState extends State<OtpScreen> {
                   'Done',
                 ),
                 onPressed: () {
-                  FirebaseAuth.instance.currentUser().then((user) {
-                    if (user!= null) {
-                      Navigator.of(context).pop();
-                      Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(builder: (BuildContext context) {
-                        return HomePage();
-                      }));
-                      /*Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => HomePage()));*/
-                    } else {
-                      Navigator.of(context).pop();
-                      signIn();
-                    /*  Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => OtpScreen()));*/
-                    }
-                  });
+                  _verifyCode();
+
+                  // FirebaseAuth.instance.currentUser().then((user) {
+                  //   if (user != null) {
+                  //     Navigator.of(context).pop();
+                  //     Navigator.of(context).pushReplacement(
+                  //         MaterialPageRoute(builder: (BuildContext context) {
+                  //       return HomePage(
+                  //         auth: widget.auth,
+                  //       );
+                  //     }));
+                  //     /*Navigator.push(context,
+                  //         MaterialPageRoute(builder: (context) => HomePage()));*/
+                  //   } else {
+                  //     Navigator.of(context).pop();
+                  //     signIn();
+                  //     /*  Navigator.push(context,
+                  //         MaterialPageRoute(builder: (context) => OtpScreen()));*/
+                  //   }
+                  // });
 
                   /*  Navigator.push(context,
                       MaterialPageRoute(builder: (context) => OtpScreen()));*/
@@ -91,22 +111,25 @@ class _OtpScreenState extends State<OtpScreen> {
         });
   }
 
-  signIn() async {
+  _verifyCode() async {
     final AuthCredential credential = PhoneAuthProvider.getCredential(
       verificationId: verificationId,
       smsCode: smsCode,
     );
 
-    FirebaseAuth _auth = FirebaseAuth.instance;
-    final FirebaseUser user =
-        await _auth.signInWithCredential(credential).then((user) {
-      Navigator.of(context)
-          .pushReplacement(MaterialPageRoute(builder: (BuildContext context) {
-        return OtpScreen();
-      }));
-    }).catchError((e) {
+    try {
+      FirebaseAuth _auth = FirebaseAuth.instance;
+      final user = await _auth.signInWithCredential(credential);
+      Navigator.of(context).pop();
+      Navigator.of(context).pop();
+    } on PlatformException catch (e) {
+      // if (e.code == 'ERROR_INVALID_VERIFICATION_CODE') {
+      //   errorMsg.text = "Invalid code, Please try again.";
+      // } else {
+      //   errorMsg.text = "Error while verifying, Please try again.";
+      // }
       print(e);
-    });
+    }
   }
 
   @override

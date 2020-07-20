@@ -1,7 +1,9 @@
 import 'dart:io';
 import 'dart:math';
+import 'package:bechdoapp/Screen/home_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart'; // For File Upload To Firestore
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:image_picker/image_picker.dart'; // For Image Picker
@@ -9,20 +11,15 @@ import 'package:path/path.dart' as Path;
 
 import 'Screen/listView.dart';
 
-
-class MyHomePage extends StatefulWidget {
+class AdsPostImageUpload extends StatefulWidget {
   final String docId;
 
-  const MyHomePage(this.docId);
+  const AdsPostImageUpload(this.docId);
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _AdsPostImageUploadState createState() => _AdsPostImageUploadState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-
-
-
-
+class _AdsPostImageUploadState extends State<AdsPostImageUpload> {
   File _image;
   String _uploadedFileURL;
 
@@ -47,8 +44,8 @@ class _MyHomePageState extends State<MyHomePage> {
         Firestore.instance.collection('posts').document(this.widget.docId);
     await docRef.updateData({'imageUrl': imageUrl});
 
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => ListScreen()));
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => HomePage()));
   }
 
   @override
@@ -87,12 +84,10 @@ class _MyHomePageState extends State<MyHomePage> {
     final double width = (MediaQuery.of(context).size.width / 1) - 27;
 
     return Container(
-
       margin: EdgeInsets.all(30.0),
       height: height,
       width: width,
       decoration: BoxDecoration(
-
         borderRadius: BorderRadius.all(
             Radius.circular(10.0)), // set rounded corner radius
 
@@ -119,7 +114,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   _image.path,
                   height: 240,
                 )
-              : Container(height: 220, ),
+              : Container(
+                  height: 220,
+                ),
           SizedBox(
             height: 13.0,
           ),

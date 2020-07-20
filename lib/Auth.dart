@@ -1,4 +1,4 @@
- import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -6,8 +6,6 @@ import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class User {
-
-
   final String uid;
 
   User({@required this.uid});
@@ -27,11 +25,10 @@ abstract class AuthBase {
 //  Future<void> verifyPhone();
   Future<void> signOut();
 }
-  // Future<User> adPost();
+// Future<User> adPost();
 /*
   Future<User> signInWithFacebook();
 */
-
 
 class Auth implements AuthBase {
   final _fireBaseAuth = FirebaseAuth.instance;
@@ -44,7 +41,6 @@ class Auth implements AuthBase {
   Stream<User> get onAuthStateChanged {
     return _fireBaseAuth.onAuthStateChanged.map(_userFromFireBase);
   }
-
 
   User _userFromFireBase(FirebaseUser user) {
     if (user == null) {
@@ -72,21 +68,22 @@ class Auth implements AuthBase {
     return _userFromFireBase(authResult.user);
   }
 
-   @override
+  @override
   // ignore: missing_return
-  Future<User> signInWithFacebook() async{
+  Future<User> signInWithFacebook() async {
     final facebookLogin = FacebookLogin();
     final result = await facebookLogin.logIn(
       ['public_profile'],
     );
-if(result.accessToken != null){
-  final authResult = await _fireBaseAuth.signInWithCredential(FacebookAuthProvider.getCredential(accessToken: result.accessToken.token,));
-return _userFromFireBase(authResult.user);
-}
- else{
-
-}
+    if (result.accessToken != null) {
+      final authResult = await _fireBaseAuth
+          .signInWithCredential(FacebookAuthProvider.getCredential(
+        accessToken: result.accessToken.token,
+      ));
+      return _userFromFireBase(authResult.user);
+    } else {}
   }
+
   @override
   Future<User> signInWithGoogle() async {
     final googleSignIn = GoogleSignIn();
@@ -112,7 +109,8 @@ return _userFromFireBase(authResult.user);
       );
     }
   }
-@override
+
+  @override
   /*Future<void> verifyPhone() async {
 
     final PhoneCodeAutoRetrievalTimeout autoRetrieve = (String verId) {
@@ -144,11 +142,13 @@ return _userFromFireBase(authResult.user);
 */
 
   @override
-  Future<void> signOut () async{
-    final googleSignIn = GoogleSignIn();
-    await googleSignIn.signOut();
-    final facebookLogin = FacebookLogin();
-    await facebookLogin.logOut();
+  Future<void> signOut() async {
+    // final googleSignIn = GoogleSignIn();
+    // await googleSignIn.signOut();
+    // final facebookLogin = FacebookLogin();
+    // await facebookLogin.logOut();
+    // await _fireBaseAuth.signOut();
+
     await _fireBaseAuth.signOut();
   }
 
@@ -157,4 +157,4 @@ return _userFromFireBase(authResult.user);
     // TODO: implement currentUser
     throw UnimplementedError();
   }
-  }
+}
